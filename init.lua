@@ -6,21 +6,10 @@ local plugin_list = {
 -- local module_list = {"mason","lspconfig","mason-lspconfig"}
 local module_list = {"mason", "mason-lspconfig"}
 
-function Check_lazynvim()
-    local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-    vim.opt.rtp:prepend(lazypath)
-    local status, lazy = pcall(require, "lazy")
-    if status then
-	print("load lazy")
-        lazy.setup(plugin_list)
-	return true
-    else
-	return Download_lazynvim(lazypath)
-    end
-end
 
+-- TODO: Move then to lib.lua
 -- https://www.lazyvim.org/configuration/lazy.nvim
-function Download_lazynvim(lazypath)
+local function download_lazynvim(lazypath)
     print("Download lazynvim from github...")
     if not vim.uv.fs_stat(lazypath) then
         local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -35,7 +24,19 @@ function Download_lazynvim(lazypath)
     end
 end
 
-function Load_and_setup_modules(list)
+local function check_lazynvim()
+    local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+    vim.opt.rtp:prepend(lazypath)
+    local status, lazy = pcall(require, "lazy")
+    if status then
+        lazy.setup(plugin_list)
+	return true
+    else
+	return download_lazynvim(lazypath)
+    end
+end
+
+local function load_and_setup_modules(list)
     for _, mname in ipairs(list) do
         local status, instance = pcall(require, mname)
         if not status then
@@ -47,10 +48,12 @@ function Load_and_setup_modules(list)
     end
 end
 
-if Check_lazynvim() then
-    Load_and_setup_modules(module_list)
+if check_lazynvim() then
+    load_and_setup_modules(module_list)
 end
 
+local function setup()
+end
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
 require("lspconfig").lua_ls.setup { -- TODO: Install some lsp via lua script

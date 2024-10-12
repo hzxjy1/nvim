@@ -3,9 +3,37 @@ local plugin_list = {
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
 }
--- local module_list = {"mason","lspconfig","mason-lspconfig"}
-local module_list = {"mason", "mason-lspconfig"}
 
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
+local function lspconfig_setup(module)
+    module.lua_ls.setup { -- TODO: Install some lsp via lua script
+          on_init = function(client)
+        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+          runtime = {
+            version = 'LuaJIT'
+          },
+
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME,
+	      "${3rd}/luv/library" -- Related to vim.uv
+            }
+          }
+        })
+      end,
+      settings = {
+        Lua = {}
+    }
+}
+end
+
+-- local module_list = {"mason","lspconfig","mason-lspconfig"}
+local module_table = {
+    mason = false,
+    lspconfig = lspconfig_setup,
+    ["mason-lspconfig"] = false
+}
 
 -- TODO: Move then to lib.lua
 -- https://www.lazyvim.org/configuration/lazy.nvim
@@ -22,6 +50,7 @@ local function download_lazynvim(lazypath)
 	    return false
         end
     end
+    return true
 end
 
 local function check_lazynvim()
@@ -37,42 +66,21 @@ local function check_lazynvim()
 end
 
 local function load_and_setup_modules(list)
-    for _, mname in ipairs(list) do
+    for mname, callback in pairs(list) do
         local status, instance = pcall(require, mname)
         if not status then
             vim.notify("Could not find module: " .. mname .. "\nError: " .. instance, vim.log.levels.ERROR)
             return nil
         end
 
-        instance.setup({}) -- TODO: Add setup() parameters if needed.
+	if not callback then
+            instance.setup({})
+        else
+	    callback(instance)
+	end
     end
 end
 
 if check_lazynvim() then
-    load_and_setup_modules(module_list)
+    load_and_setup_modules(module_table)
 end
-
-local function setup()
-end
-
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
-require("lspconfig").lua_ls.setup { -- TODO: Install some lsp via lua script
-  on_init = function(client)
-    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-      runtime = {
-        version = 'LuaJIT'
-      },
-
-      workspace = {
-        checkThirdParty = false,
-        library = {
-          vim.env.VIMRUNTIME,
-	  "${3rd}/luv/library" -- Related to vim.uv
-        }
-      }
-    })
-  end,
-  settings = {
-    Lua = {}
-  }
-}

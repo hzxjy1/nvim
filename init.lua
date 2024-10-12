@@ -14,7 +14,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local map = vim.api.nvim_set_keymap
-local opt = {noremap = true, silent = true }
+local opt = { noremap = true, silent = true }
 -- Indent code in visual mode
 map("v", "<", "<gv", opt)
 map("v", ">", ">gv", opt)
@@ -31,25 +31,25 @@ map("i", "<C-s>", "<Esc>:w<CR>a", opt)
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
 local function lspconfig_setup(module)
     module.lua_ls.setup { -- TODO: Install some lsp via lua script
-          on_init = function(client)
-        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-          runtime = {
-            version = 'LuaJIT'
-          },
+        on_init = function(client)
+            client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+                runtime = {
+                    version = 'LuaJIT'
+                },
 
-          workspace = {
-            checkThirdParty = false,
-            library = {
-              vim.env.VIMRUNTIME,
-	      "${3rd}/luv/library" -- Related to vim.uv
-            }
-          }
-        })
-      end,
-      settings = {
-        Lua = {}
+                workspace = {
+                    checkThirdParty = false,
+                    library = {
+                        vim.env.VIMRUNTIME,
+                        "${3rd}/luv/library" -- Related to vim.uv
+                    }
+                }
+            })
+        end,
+        settings = {
+            Lua = {}
+        }
     }
-}
 end
 
 -- local module_list = {"mason","lspconfig","mason-lspconfig"}
@@ -68,10 +68,10 @@ local function download_lazynvim(lazypath)
         local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
         if vim.v.shell_error ~= 0 then
             vim.api.nvim_echo({
-              { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-              { out, "WarningMsg" },
+                { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+                { out,                            "WarningMsg" },
             }, true, {})
-	    return false
+            return false
         end
     end
     return true
@@ -83,9 +83,9 @@ local function check_lazynvim()
     local status, lazy = pcall(require, "lazy")
     if status then
         lazy.setup(plugin_list)
-	return true
+        return true
     else
-	return download_lazynvim(lazypath)
+        return download_lazynvim(lazypath)
     end
 end
 
@@ -97,11 +97,11 @@ local function load_and_setup_modules(list)
             return nil
         end
 
-	if not callback then
+        if not callback then
             instance.setup({})
         else
-	    callback(instance)
-	end
+            callback(instance)
+        end
     end
 end
 

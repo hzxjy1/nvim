@@ -2,6 +2,8 @@ local plugin_list = {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
+    --'hrsh7th/nvim-cmp',
+    'nvim-tree/nvim-tree.lua',
 }
 
 -- Key binding setup
@@ -24,12 +26,24 @@ map("v", "K", ":move '<-2<CR>gv-gv", opt)
 -- Move up and down four lines
 map("n", "<C-j>", "4j", opt)
 map("n", "<C-k>", "4k", opt)
+-- Ctrl+S, you know what it do
 map("n", "<C-s>", ":w<CR>", opt)
 map("i", "<C-s>", "<Esc>:w<CR>a", opt)
+-- Quick quit
+map("n", "q", "<Esc>:q<CR>", opt)
+-- Lsp about
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
+map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
+map("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
+map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
+map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opt)
+-- nvim-tree about
+map("n", "<C-t>", "<cmd>NvimTreeToggle<CR>", opt)
 -- Key binding end
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
-local function lspconfig_setup(module)
+local lspconfig_setup = function(module)
     module.lua_ls.setup { -- TODO: Install some lsp via lua script
         on_init = function(client)
             client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
@@ -56,7 +70,8 @@ end
 local module_table = {
     mason = false,
     lspconfig = lspconfig_setup,
-    ["mason-lspconfig"] = false
+    ["mason-lspconfig"] = false,
+    ["nvim-tree"] = false,
 }
 
 -- TODO: Move then to lib.lua

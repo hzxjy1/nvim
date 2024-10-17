@@ -1,3 +1,4 @@
+local binding = {}
 
 -- Key binding setup
 vim.wo.relativenumber = true
@@ -25,7 +26,7 @@ map("i", "<C-s>", "<Esc>:w<CR>a", opt)
 -- Quick quit
 map("n", "q", "<Esc>:q<CR>", opt)
 -- LSP about
-map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt) -- TODO: move bindings to plugin setup
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
 map("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
@@ -33,7 +34,19 @@ map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
 map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opt)
 -- nvim-tree about
 map("n", "<C-E>", "<cmd>NvimTreeToggle<CR>", opt)
--- bufferline about 
+-- bufferline about
 map("n", "<C-h>", "<cmd>BufferLineCyclePrev<CR>", opt)
 map("n", "<C-l>", "<cmd>BufferLineCycleNext<CR>", opt)
 -- Key binding end
+
+binding.cmp_map = function(module)
+    return {
+        ['<C-n>'] = module.mapping.select_next_item(),
+        ['<C-p>'] = module.mapping.select_prev_item(),
+        ['<C-e>'] = module.mapping.close(),
+        ['<CR>'] = module.mapping.confirm({ select = true, behavior = module.ConfirmBehavior.Replace }),
+        ['<Tab>'] = module.mapping.select_next_item(),
+        ['<S-Tab>'] = module.mapping.select_prev_item(),
+    }
+end
+return binding

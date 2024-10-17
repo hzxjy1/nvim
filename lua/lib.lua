@@ -1,4 +1,5 @@
 local lib = {}
+local binding = require("key_binding")
 
 -- https://www.lazyvim.org/configuration/lazy.nvim
 local function download_lazynvim(lazypath)
@@ -75,23 +76,22 @@ lib.cmp_setup = function(module)
     local temp_setting = {
         snippet = {
             expand = function(args)
-                vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-                require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-                -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-                -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+                require('luasnip').lsp_expand(args.body)
             end,
         },
+        mapping = binding.cmp_map(module),
         sources = module.config.sources({
             { name = 'nvim_lsp' },
-            { name = 'vsnip' }, -- For vsnip users.
-            { name = 'luasnip' }, -- For luasnip users.
-            -- { name = 'ultisnips' }, -- For ultisnips users.
-            -- { name = 'snippy' }, -- For snippy users.
-        }, {
+            { name = 'luasnip' },
             { name = 'buffer' },
+            { name = 'path' }
         })
     }
 
+    module.event:on( -- autopair for functions
+        'confirm_done',
+        require('nvim-autopairs.completion.cmp').on_confirm_done()
+    )
     module.setup(temp_setting)
 end
 

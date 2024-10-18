@@ -46,6 +46,13 @@ function lib.load_and_setup_modules(list)
     end
 end
 
+function lib.load_modules(lua_modules)
+    for i, module in ipairs(lua_modules) do
+        -- print(i, module)
+        require("plugins" .. "." .. module)
+    end
+end
+
 -- TODO: Move to setup.lua
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
 lib.lspconfig_setup = function(module)

@@ -35,6 +35,9 @@ local module_table = {
     cmp = lib.cmp_setup,
 }
 
+local lua_modules={"mason"}--,"mason-lspconfig"}
+
 if lib.check_lazynvim(plugin_list) then
     lib.load_and_setup_modules(module_table)
+    lib.load_modules(lua_modules)
 end

@@ -88,10 +88,10 @@ lib.cmp_setup = function(module)
         })
     }
 
-    module.event:on( -- autopair for functions
-        'confirm_done',
-        require('nvim-autopairs.completion.cmp').on_confirm_done()
-    )
+    -- module.event:on( -- autopair for functions
+    --     'confirm_done',
+    --     require('nvim-autopairs.completion.cmp').on_confirm_done()
+    -- )
     module.setup(temp_setting)
 end
 

@@ -26,18 +26,8 @@ local plugin_list = {
     --'lewis6991/gitsigns.nvim'
 }
 
-local module_table = {
-    mason = false,
-    lspconfig = lib.lspconfig_setup,
-    ["mason-lspconfig"] = false,
-    ["nvim-tree"] = false,
-    bufferline = false,
-    cmp = lib.cmp_setup,
-}
-
-local lua_modules={"mason"}--,"mason-lspconfig"}
+local lua_modules = { "mason", "lspconfig", "mason-lspconfig", "nvim-tree", "bufferline", "cmp" }
 
 if lib.check_lazynvim(plugin_list) then
-    lib.load_and_setup_modules(module_table)
     lib.load_modules(lua_modules)
 end

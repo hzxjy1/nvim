@@ -1,4 +1,3 @@
-local mason=require("mason")
+local mason = require("mason")
 
-print("aaa")
 mason.setup({})

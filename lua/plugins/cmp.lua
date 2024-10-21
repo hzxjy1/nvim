@@ -17,9 +17,9 @@ local cmp_setup = {
     })
 }
 
+cmp.event:on( -- autopair for functions
+    'confirm_done',
+    require('nvim-autopairs.completion.cmp').on_confirm_done()
+)
 
--- module.event:on( -- autopair for functions
---     'confirm_done',
---     require('nvim-autopairs.completion.cmp').on_confirm_done()
--- )
 cmp.setup(cmp_setup)

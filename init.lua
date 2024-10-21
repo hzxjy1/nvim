@@ -19,6 +19,7 @@ local plugin_list = {
     nvim_cmp,
     'nvim-tree/nvim-tree.lua',
     'akinsho/bufferline.nvim',
+    'windwp/nvim-autopairs',
     --'lukas-reineke/indent-blankline.nvim', -- TODO: Accomplish them
     --'nvim-treesitter/nvim-treesitter'
     --'windwp/nvim-autopairs',
@@ -26,7 +27,7 @@ local plugin_list = {
     --'lewis6991/gitsigns.nvim'
 }
 
-local lua_modules = { "mason", "lspconfig", "mason-lspconfig", "nvim-tree", "bufferline", "cmp" }
+local lua_modules = { "mason", "lspconfig", "mason-lspconfig", "nvim-tree", "bufferline", "cmp", "nvim-autopairs" }
 
 if lib.check_lazynvim(plugin_list) then
     lib.load_modules(lua_modules)

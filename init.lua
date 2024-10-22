@@ -1,3 +1,6 @@
+-- TODO: <C-r>w close buffer
+-- TODO：Resume tabs when enter a project
+-- TODO: Fix :checkhealth warn & error
 local lib = require("lib")
 require("key_binding")
 
@@ -20,11 +23,12 @@ local plugin_list = {
     'nvim-tree/nvim-tree.lua',
     'akinsho/bufferline.nvim',
     'windwp/nvim-autopairs',
-    --'lukas-reineke/indent-blankline.nvim', -- TODO: Accomplish them
+    --'lukas-reineke/indent-blankline.nvim', -- TODO: Accomplish them -- TODO: Need plugin_list classification
     --'nvim-treesitter/nvim-treesitter'
-    --'windwp/nvim-autopairs',
     --'nvim-telescope/telescope.nvim'
     --'lewis6991/gitsigns.nvim'
+    --'stevearc/aerial.nvim'
+    --'CRAG666/code_runner.nvim'
 }
 
 local lua_modules = { "mason", "lspconfig", "mason-lspconfig", "nvim-tree", "bufferline", "cmp", "nvim-autopairs" }

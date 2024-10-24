@@ -17,7 +17,7 @@ local function download_lazynvim(lazypath)
     return true
 end
 
-function lib.check_lazynvim(plugin_list)
+function lib.lazynvim_bootstrap(plugin_list)
     local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
     vim.opt.rtp:prepend(lazypath)
     local status, lazy = pcall(require, "lazy")

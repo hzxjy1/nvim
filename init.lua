@@ -39,6 +39,6 @@ local plugin_list = {
 local lua_modules = { "mason", "lspconfig", "mason-lspconfig", "nvim-tree", "bufferline", "cmp", "nvim-autopairs",
     "luasnip", "lint" }
 
-if lib.check_lazynvim(plugin_list) then
+if lib.lazynvim_bootstrap(plugin_list) then
     lib.load_modules("plugins", lua_modules)
 end

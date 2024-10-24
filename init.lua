@@ -1,6 +1,7 @@
 -- TODO: <C-r>w close buffer
 -- TODO：Resume tabs when enter a project
 -- TODO: Fix :checkhealth warn & error --> luarocks
+-- TODO: Need a plugin for git
 local lib = require("lib")
 require("key_binding")
 
@@ -33,12 +34,12 @@ local plugin_list = {
     --'stevearc/aerial.nvim'
     --'CRAG666/code_runner.nvim'
     --'nvimdev/lspsaga.nvim'
-    --'nvimtools/none-ls.nvim' --linter
+    -- 'nvimtools/none-ls.nvim' --linter
 }
 -- TODO: Auto load plugins
 local lua_modules = { "mason", "lspconfig", "mason-lspconfig", "nvim-tree", "bufferline", "cmp", "nvim-autopairs",
     "luasnip" }
 
 if lib.check_lazynvim(plugin_list) then
-    lib.load_modules(lua_modules)
+    lib.load_modules("plugins", lua_modules)
 end

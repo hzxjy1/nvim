@@ -29,10 +29,19 @@ function lib.check_lazynvim(plugin_list)
     end
 end
 
-function lib.load_modules(lua_modules)
-    for _, module in ipairs(lua_modules) do
-        require("plugins" .. "." .. module)
+function lib.load_modules(modules_path, modules_list)
+    -- if modules_list == nil then
+        -- TODO: Wait luarocks
+        -- local lfs = require("lfs")
+    -- end
+
+    for _, module in ipairs(modules_list) do
+        require(modules_path .. "." .. module)
     end
+end
+
+function lib.module_is_loaded(module_name)
+    return package.loaded[module_name] ~= nil
 end
 
 return lib

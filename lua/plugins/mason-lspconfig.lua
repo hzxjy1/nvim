@@ -1,3 +1,6 @@
+if not require("lib").module_is_loaded("mason") then
+    require("plugins.mason")
+end
 local mason_lspconfig = require("mason-lspconfig")
 
 local mason_lspconfig_setup = {

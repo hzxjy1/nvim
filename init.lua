@@ -1,4 +1,3 @@
--- TODO: <C-r>w close buffer
 -- TODO：Resume tabs when enter a project
 -- TODO: Fix :checkhealth warn & error --> luarocks
 -- TODO: Need a plugin for git

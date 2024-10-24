@@ -21,11 +21,11 @@ map("v", "K", ":move '<-2<CR>gv-gv", opt)
 -- Move up and down four lines
 map("n", "<C-j>", "4j", opt)
 map("n", "<C-k>", "4k", opt)
--- Ctrl+S, you know what it do
+-- Save something
 map("n", "<C-s>", ":w<CR>", opt)
 map("i", "<C-s>", "<Esc>:w<CR>a", opt)
 -- Quick quit
-map("n", "q", "<Esc>:q<CR>", opt)
+map("n", "<BS>", "<Esc>:q<CR>", opt)
 -- LSP about
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt) -- TODO: move bindings to plugin setup
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
@@ -38,6 +38,7 @@ map("n", "<C-E>", "<cmd>NvimTreeToggle<CR>", opt)
 -- bufferline about
 map("n", "<C-h>", "<cmd>BufferLineCyclePrev<CR>", opt)
 map("n", "<C-l>", "<cmd>BufferLineCycleNext<CR>", opt)
+map("n", "<C-w>", "<cmd>bdelete<CR>", opt)
 -- Key binding end
 
 binding.cmp_map = function(module)

@@ -27,6 +27,7 @@ local plugin_list = {
     'nvim-tree/nvim-tree.lua',
     'akinsho/bufferline.nvim',
     'windwp/nvim-autopairs',
+    'mfussenegger/nvim-lint',
     --'lukas-reineke/indent-blankline.nvim', -- TODO: Accomplish them -- TODO: Need plugin_list classification
     --'nvim-treesitter/nvim-treesitter' First slove
     --'nvim-telescope/telescope.nvim'
@@ -34,11 +35,10 @@ local plugin_list = {
     --'stevearc/aerial.nvim'
     --'CRAG666/code_runner.nvim'
     --'nvimdev/lspsaga.nvim'
-    -- 'nvimtools/none-ls.nvim' --linter
 }
 -- TODO: Auto load plugins
 local lua_modules = { "mason", "lspconfig", "mason-lspconfig", "nvim-tree", "bufferline", "cmp", "nvim-autopairs",
-    "luasnip" }
+    "luasnip", "lint" }
 
 if lib.check_lazynvim(plugin_list) then
     lib.load_modules("plugins", lua_modules)

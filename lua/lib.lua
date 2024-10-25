@@ -29,6 +29,9 @@ function lib.lazynvim_bootstrap(plugin_list)
     end
 end
 
+function lib.luarocks_bootstrap()
+end
+
 function lib.load_modules(modules_path, modules_list)
     -- if modules_list == nil then
         -- TODO: Wait luarocks

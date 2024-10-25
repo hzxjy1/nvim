@@ -1,5 +1,5 @@
--- TODO：Resume tabs when enter a project
 -- TODO: Fix :checkhealth warn & error --> luarocks
+-- TODO: Add shell support
 -- TODO: Need a plugin for git
 local lib = require("lib")
 require("key_binding")

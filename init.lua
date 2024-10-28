@@ -39,6 +39,10 @@ local plugin_list = {
 local lua_modules = { "mason", "lspconfig", "mason-lspconfig", "nvim-tree", "bufferline", "cmp", "nvim-autopairs",
     "luasnip", "lint" }
 
+local serpent = require("serpent")
+local ret = lib.module_loader("plugins_re")
+print(serpent.block(ret))
+
 if lib.lazynvim_bootstrap(plugin_list) then
     lib.load_modules("plugins", lua_modules)
 end

@@ -1,14 +1,15 @@
 local binding = {}
 
 -- Key binding setup
-vim.wo.relativenumber = true
-vim.o.number = true
+vim.cmd('set number') -- toggle_line_numbbersers() will lose efficacy if use "vim.o.number"
+vim.cmd('set relativenumber')
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.o.mouse = "" -- Disable it because I need right click to copy in WSL
 
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
@@ -26,6 +27,8 @@ map("n", "<C-s>", ":w<CR>", opt)
 map("i", "<C-s>", "<Esc>:w<CR>a", opt)
 -- Quick quit
 map("n", "<BS>", "<Esc>:q<CR>", opt)
+-- Show number line
+map("n", "<F2>", "<cmd>set number! relativenumber!<CR>", opt)
 -- LSP about
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt) -- TODO: move bindings to plugin setup
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)

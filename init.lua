@@ -18,7 +18,7 @@ local nvim_cmp = {
     }
 }
 
-local plugin_list = {
+local plugin_list_prev = {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
@@ -39,6 +39,10 @@ local plugin_list = {
 local lua_modules = { "mason", "lspconfig", "mason-lspconfig", "nvim-tree", "bufferline", "cmp", "nvim-autopairs",
     "luasnip", "lint" }
 
+-- if lib.lazynvim_bootstrap(plugin_list_prev) then
+--     lib.load_modules("plugins", lua_modules)
+-- end
+
 -- local serpent = require("serpent")
 -- print(serpent.block(ret))
 local plugin_list = lib.module_loader("plugins_re")
@@ -47,7 +51,3 @@ if plugin_list == nil then
 else
     lib.lazynvim_bootstrap_re(plugin_list)
 end
-
--- if lib.lazynvim_bootstrap(plugin_list) then
---     lib.load_modules("plugins", lua_modules)
--- end

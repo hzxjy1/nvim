@@ -23,8 +23,7 @@ function lib.module_loader(modules_path)
     for _, file in ipairs(vim.fn.readdir(config_path .. modules_path)) do
         if file:match('%.lua$') then
             local plugin_name = file:sub(1, -5)
-            local plugin_location = modules_path .. "." .. plugin_name -- TODO: Make a table to store loaded plugins
-            -- print(plugin_location)
+            local plugin_location = modules_path .. "." .. plugin_name
             local status, module = pcall(require, plugin_location)
             if not status then
                 -- skip
@@ -61,7 +60,7 @@ function lib.lazynvim_bootstrap(plugin_list)
     end
 end
 
-function lib.luarocks_bootstrap()
+function lib.luarocks_bootstrap() -- TODO: Need complete
 end
 
 function lib.load_modules(modules_path, modules_list)

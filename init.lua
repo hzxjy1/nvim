@@ -13,6 +13,8 @@ local wish_list = {
     --'stevearc/aerial.nvim'
     --'CRAG666/code_runner.nvim'
     --'nvimdev/lspsaga.nvim'
+    --"folke/which-key.nvim"
+    --"folke/todo-comments.nvim"
 }
 
 local plugin_path = "plugins_re"

@@ -1,6 +1,9 @@
--- TODO: Fix :checkhealth warn & error --> luarocks
--- TODO: Add shell support
+-- TODO: Fix :checkhealth warn & error -> luarocks
+-- TODO: Fix clipboard -> copy buffer rsync
+-- TODO: Add shell && python && rust support
+-- TODO: Need inlay hints especially RUST!!! -> rustaceanvim
 -- TODO: Need a plugin for git
+-- TODO: Check out what plugins can be loaded lazily
 local lib = require("lib")
 require("key_binding")
 

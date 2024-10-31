@@ -36,18 +36,6 @@ function lib.module_loader(modules_path)
     return plugin_list
 end
 
-function lib.lazynvim_bootstrap_re(plugin_list)
-    local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-    vim.opt.rtp:prepend(lazypath)
-    local status, lazy = pcall(require, "lazy")
-    if status then
-        lazy.setup(plugin_list)
-        return true
-    else
-        return download_lazynvim(lazypath)
-    end
-end
-
 function lib.lazynvim_bootstrap(plugin_list)
     local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
     vim.opt.rtp:prepend(lazypath)
@@ -63,14 +51,15 @@ end
 function lib.luarocks_bootstrap() -- TODO: Need complete
 end
 
-function lib.load_modules(modules_path, modules_list)
-    for _, module in ipairs(modules_list) do
-        require(modules_path .. "." .. module)
-    end
-end
-
 function lib.module_is_loaded(module_name)
     return package.loaded[module_name] ~= nil
+end
+
+function lib.table_debugger(table)
+    local status, serpent = pcall(require, "serpent")
+    if status then
+        print(serpent.block(table))
+    end
 end
 
 return lib

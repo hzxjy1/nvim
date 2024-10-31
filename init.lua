@@ -17,10 +17,8 @@ local wish_list = {
     --"folke/todo-comments.nvim"
 }
 
-local plugin_path = "plugins_re"
+local plugin_path = "plugins/"
 local plugin_list = lib.module_loader(plugin_path)
--- local serpent = require("serpent")
--- print(serpent.block(plugin_list))
-if not lib.lazynvim_bootstrap_re(plugin_list) then
+if not lib.lazynvim_bootstrap(plugin_list) then
     print("Unable to load plugins")
 end

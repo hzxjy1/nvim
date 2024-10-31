@@ -5,7 +5,6 @@ local require_list = {
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
     -- Snip
-    -- "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
     "rafamadriz/friendly-snippets",
 }
@@ -56,11 +55,12 @@ local config = {
                 }
             })
         })
-        -- cmp.setup.cmdline(":", cmp.get_config())
-        -- cmp.event:on( -- autopair for functions
-        --     'confirm_done',
-        --     require('nvim-autopairs.completion.cmp').on_confirm_done()
-        -- ) -- TODO: Migrate autopair
+
+        cmp.setup.cmdline(":", cmp.get_config())
+        cmp.event:on( -- autopair for functions
+            'confirm_done',
+            require('nvim-autopairs.completion.cmp').on_confirm_done()
+        )
     end
 }
 

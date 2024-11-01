@@ -15,6 +15,7 @@ local wish_list = {
     --'nvimdev/lspsaga.nvim'
     --"folke/which-key.nvim"
     --"folke/todo-comments.nvim"
+    --'tpope/vim-obsession'
 }
 
 local plugin_path = "plugins/"

@@ -1,5 +1,9 @@
+local python = require("../trinity/python") -- TODO: Write a plugin picker
+
+local install_list = { "lua_ls", "ts_ls", python.lsp } -- TODO: Add func to download non-lsp software
+
 local mason_lspconfig_setup = {
-    ensure_installed = { "lua_ls", "ts_ls" },
+    ensure_installed = install_list,
     automatic_installation = true,
 }
 

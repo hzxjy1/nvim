@@ -1,3 +1,5 @@
+local python = require("../trinity/python") -- TODO: Write a plugin picker
+
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
 local lua_ls_setup = {
     on_init = function(client)
@@ -53,6 +55,7 @@ local config = {
         lspconfig.lua_ls.setup(lua_ls_setup)
         lspconfig.ts_ls.setup(ts_ls_setup)
         lspconfig.clangd.setup(clangd_setup(lspconfig))
+        lspconfig[python.lsp].setup(python.lsp_setup(lspconfig))
     end
 }
 

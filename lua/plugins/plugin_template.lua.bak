@@ -1,0 +1,8 @@
+local config = {
+    "",
+    config = function()
+        require("").setup({})
+    end
+}
+
+return config

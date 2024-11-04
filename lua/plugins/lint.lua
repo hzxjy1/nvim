@@ -14,6 +14,11 @@ local config = {
                 lint.try_lint()
             end,
         })
+
+        vim.api.nvim_create_user_command('Lint', function()
+            print("Linting...")
+            lint.try_lint()
+        end, {})
     end
 }
 

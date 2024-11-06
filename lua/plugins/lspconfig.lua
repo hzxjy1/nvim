@@ -1,5 +1,3 @@
-local python = require("../trinity/python") -- TODO: Write a plugin picker
-
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
 local lua_ls_setup = {
     on_init = function(client)
@@ -31,31 +29,17 @@ local ts_ls_setup = {
     },
 }
 
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#clangd
-local clangd_setup = function(lspconfig)
-    return {
-        filetypes = { "c", "cpp" },
-        root_dir = lspconfig.util.root_pattern(
-            '.clangd',
-            '.clang-tidy',
-            '.clang-format',
-            'compile_commands.json',
-            'compile_flags.txt',
-            'configure.ac',
-            '.git'
-        ),
-        single_file_support = true,
-    }
-end
-
 local config = {
     "neovim/nvim-lspconfig",
     config = function()
+        local lang_conf = require("lib").module_loader("trinity") -- TODO: Param loaded by conf.lua
         local lspconfig = require("lspconfig")
+        local fp = require("functional")
+        fp.map(lang_conf,function (obj)
+            lspconfig[obj.lsp].setup(obj.lsp_setup(lspconfig))
+        end)
         lspconfig.lua_ls.setup(lua_ls_setup)
         lspconfig.ts_ls.setup(ts_ls_setup)
-        lspconfig.clangd.setup(clangd_setup(lspconfig))
-        lspconfig[python.lsp].setup(python.lsp_setup(lspconfig))
     end
 }
 

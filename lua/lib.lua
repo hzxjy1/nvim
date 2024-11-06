@@ -1,4 +1,3 @@
-local fp = require("functional")
 local lib = {}
 
 -- https://www.lazyvim.org/configuration/lazy.nvim
@@ -54,17 +53,6 @@ end
 
 function lib.module_is_loaded(module_name)
     return package.loaded[module_name] ~= nil
-end
-
-function lib.lang_conf_reader(path) -- TODO: Try to use option
-    local status, files = pcall(vim.fn.readdir, path)
-    if not status then
-        print("Error reading directory.")
-    end
-    return fp.filter(files,
-        function(file)
-            return vim.fn.isdirectory(file) ~= 1
-        end)
 end
 
 function lib.table_debugger(table)

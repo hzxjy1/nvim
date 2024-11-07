@@ -3,8 +3,9 @@
 -- TODO: python need formatter
 -- TODO: Need inlay hints especially RUST!!! -> rustaceanvim
 -- TODO: Need a plugin for git
--- TODO: Check out what plugins can be loaded lazily
+-- TODO: Check out what plugins can be loaded lazily -> lazyload clangd
 -- TODO: Add ui switch key_binding
+-- TODO: Replace luasnip
 local lib = require("lib")
 require("key_binding")
 local wish_list = {

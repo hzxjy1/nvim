@@ -55,7 +55,7 @@ function lib.module_is_loaded(module_name)
     return package.loaded[module_name] ~= nil
 end
 
-function lib.table_debugger(table)
+function lib.print(table)
     local status, serpent = pcall(require, "serpent")
     if status then
         print(serpent.block(table))

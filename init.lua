@@ -6,6 +6,7 @@
 -- TODO: Check out what plugins can be loaded lazily -> lazyload clangd
 -- TODO: Add ui switch key_binding
 -- TODO: fmt while enter normal mode
+-- TODO: Add cmd to reload conf manually
 local lib = require("lib")
 require("key_binding")
 local wish_list = {

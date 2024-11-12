@@ -1,4 +1,5 @@
 local lua_conf = {
+    name = "lua",
     lsp = "lua_ls",
     linter = "default",
     formatter = "default"

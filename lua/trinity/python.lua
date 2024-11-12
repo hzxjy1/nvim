@@ -1,4 +1,5 @@
 local python_conf = {
+    name = "python",
     lsp = "pyright",
     linter = "pylint",
     formatter = "default"

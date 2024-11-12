@@ -1,4 +1,6 @@
 local c_cpp_conf = {
+    name = "alias",
+    alias = { "c", "cpp" },
     lsp = "clangd",
     linter = "clang-tidy",
     formatter = "default"

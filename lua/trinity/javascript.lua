@@ -1,4 +1,5 @@
 local javascript_conf = {
+    name = "javascript",
     lsp = "ts_ls",
     linter = "default",
     formatter = "default"

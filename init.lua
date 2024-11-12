@@ -5,7 +5,7 @@
 -- TODO: Need a plugin for git
 -- TODO: Check out what plugins can be loaded lazily -> lazyload clangd
 -- TODO: Add ui switch key_binding
--- TODO: Replace luasnip
+-- TODO: fmt while enter normal mode
 local lib = require("lib")
 require("key_binding")
 local wish_list = {
@@ -19,6 +19,10 @@ local wish_list = {
     --"folke/which-key.nvim"
     --"folke/todo-comments.nvim"
     --'tpope/vim-obsession'
+    --'mhartington/formatter.nvim'
+    --'rmagatti/auto-session'
+    --"karb94/neoscroll.nvim"
+    --"azabiong/vim-highlighter"
 }
 
 local plugin_path = "plugins"

@@ -35,7 +35,7 @@ map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
 map("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
 map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
-map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opt)
+map("n", "<leader>f", "<cmd>Fmt<CR>", opt)
 -- nvim-tree about
 map("n", "<C-E>", "<cmd>NvimTreeToggle<CR>", opt)
 -- bufferline about

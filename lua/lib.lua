@@ -79,7 +79,7 @@ function lib.module_is_loaded(module_name)
 end
 
 function lib.print(table)
-    local status, serpent = pcall(require, "serpent")
+    local status, serpent = pcall(require, "tookit/serpent/serpent")
     if status then
         print(serpent.block(table))
     end

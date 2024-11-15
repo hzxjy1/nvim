@@ -79,7 +79,6 @@ local function arrays_equal(arr1, arr2)
 end
 
 function functional.test()
-    -- local lib = require("lib")
     local numbers = { 1, 2, 3, 4, 5 }
 
     local lambda_map = function(number) return number + 1 end
@@ -87,20 +86,20 @@ function functional.test()
     local lambda_filter = function(x) return x % 2 == 0 end
 
     local mapped_numbers = functional.map(numbers, lambda_map)
-    -- lib.table_debugger(mapped_numbers)
+    -- lib.print(mapped_numbers)
     assert(arrays_equal(mapped_numbers, { 2, 3, 4, 5, 6 }))
     local reduced_numbers = functional.reduce(numbers, lambda_reduce, 0)
-    -- lib.table_debugger(reduced_numbers)
+    -- lib.print(reduced_numbers)
     assert(reduced_numbers == 15)
     local filtered_numbers = functional.filter(numbers, lambda_filter)
-    -- lib.table_debugger(filtered_numbers)
+    -- lib.print(filtered_numbers)
     assert(arrays_equal(filtered_numbers, { 2, 4 }))
 
     local curried_map = functional.curry(functional.map, 2, true)
     local curried_reduce = functional.curry(functional.reduce, 3, true)
     local composed = functional.compose(curried_map(lambda_map), curried_reduce(0)(lambda_reduce))
     local composed_number = composed(numbers)
-    -- lib.table_debugger(composed_number)
+    -- lib.print(composed_number)
     assert(composed_number == 20)
 end
 

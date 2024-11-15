@@ -11,7 +11,7 @@
 ---@diagnostic disable: lowercase-global
 -- Lowercase for compatibility -- TODO: Del unuseful import
 lib = require("lib")
-fp = require("functional")
+fp = require("tookit/functional")
 
 require("key_binding")
 local wish_list = {

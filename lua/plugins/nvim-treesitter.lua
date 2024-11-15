@@ -1,10 +1,7 @@
-local lib = require("lib")
-local map = require("functional").map
-
 local function get_install_list()
     local lang_conf = lib.module_loader("trinity")
     local list = {}
-    map(lang_conf, function(entity)
+    fp.map(lang_conf, function(entity)
         if entity.name == 'alias' then
             for _, value in ipairs(entity.alias) do
                 table.insert(list, value)

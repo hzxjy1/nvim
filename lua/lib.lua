@@ -51,6 +51,29 @@ end
 function lib.luarocks_bootstrap() -- TODO: Need complete
 end
 
+function lib.check_essential(bin_list)
+  local mason_bin_path = vim.fn.stdpath("data") .. "/mason/bin"
+  vim.env.PATH = mason_bin_path .. ":" .. vim.env.PATH
+
+  local uninstalled = {}
+  fp.map(bin_list, function(bin)
+      if os.execute("command -v " .. bin) ~= 0 then
+          table.insert(uninstalled, bin)
+      end
+  end)
+
+  if #uninstalled > 0 then
+      local issue_bar = ""
+      for index, bin in ipairs(uninstalled) do
+          if index > 1 then
+              issue_bar = issue_bar .. ", "
+          end
+          issue_bar = issue_bar .. bin
+      end
+      print("Neovim should use these command(s):", issue_bar)
+  end
+end
+
 function lib.module_is_loaded(module_name)
     return package.loaded[module_name] ~= nil
 end

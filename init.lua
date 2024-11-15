@@ -11,16 +11,13 @@ local lib = require("lib")
 require("key_binding")
 local wish_list = {
     --'lukas-reineke/indent-blankline.nvim', -- TODO: Accomplish them
-    --'nvim-treesitter/nvim-treesitter' --TODO: Slove it first
     --'nvim-telescope/telescope.nvim'
     --'lewis6991/gitsigns.nvim'
     --'stevearc/aerial.nvim'
     --'CRAG666/code_runner.nvim'
     --'nvimdev/lspsaga.nvim'
     --"folke/which-key.nvim"
-    --"folke/todo-comments.nvim"
     --'tpope/vim-obsession'
-    --'mhartington/formatter.nvim'
     --'rmagatti/auto-session'
     --"karb94/neoscroll.nvim"
     --"azabiong/vim-highlighter"

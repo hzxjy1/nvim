@@ -8,14 +8,16 @@
 -- TODO: fmt while enter normal mode
 -- TODO: Add cmd to reload conf manually
 
----@diagnostic disable: lowercase-global
--- Lowercase for compatibility -- TODO: Del unuseful import
+---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")
 fp = require("tookit/functional")
 
 require("key_binding")
+
+---@diagnostic disable
 local wish_list = {
-	--'lukas-reineke/indent-blankline.nvim', -- TODO: Accomplish them
+	-- TODO: Accomplish them
+
 	--'nvim-telescope/telescope.nvim'
 	--'lewis6991/gitsigns.nvim'
 	--'stevearc/aerial.nvim'

@@ -57,9 +57,9 @@ function lib.check_essential(bin_list)
 
   local uninstalled = {}
   fp.map(bin_list, function(bin)
-      if os.execute("command -v " .. bin) ~= 0 then
-          table.insert(uninstalled, bin)
-      end
+    if os.execute("command -v " .. bin .. " > /dev/null 2>&1") ~= 0 then
+      table.insert(uninstalled, bin)
+    end
   end)
 
   if #uninstalled > 0 then

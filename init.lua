@@ -1,12 +1,10 @@
 -- TODO: Fix :checkhealth warn & error -> luarocks TODO: Fix clipboard -> copy buffer rsync
 -- TODO: Add shell && python && rust support
--- TODO: python need formatter
 -- TODO: Need inlay hints especially RUST!!! -> rustaceanvim
 -- TODO: Need a plugin for git
--- TODO: Check out what plugins can be loaded lazily -> lazyload clangd
 -- TODO: Add ui switch key_binding
--- TODO: fmt while enter normal mode
 -- TODO: Add cmd to reload conf manually
+-- TODO: Use external resp instead of copy
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")

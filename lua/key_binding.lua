@@ -1,8 +1,8 @@
 local binding = {}
 
 -- Key binding setup
-vim.cmd('set number') -- toggle_line_numbbersers() will lose efficacy if use "vim.o.number"
-vim.cmd('set relativenumber')
+vim.cmd("set number") -- toggle_line_numbbersers() will lose efficacy if use "vim.o.number"
+vim.cmd("set relativenumber")
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
@@ -45,13 +45,13 @@ map("n", "<C-w>", "<cmd>bdelete<CR>", opt)
 -- Key binding end
 
 binding.cmp_map = function(module)
-    return {
-        ['<C-n>'] = module.mapping.select_next_item(),
-        ['<C-p>'] = module.mapping.select_prev_item(),
-        ['<C-e>'] = module.mapping.close(),
-        ['<CR>'] = module.mapping.confirm({ select = true, behavior = module.ConfirmBehavior.Replace }),
-        ['<Tab>'] = module.mapping.select_next_item(),
-        ['<S-Tab>'] = module.mapping.select_prev_item(),
-    }
+	return {
+		["<C-n>"] = module.mapping.select_next_item(),
+		["<C-p>"] = module.mapping.select_prev_item(),
+		["<C-e>"] = module.mapping.close(),
+		["<CR>"] = module.mapping.confirm({ select = true, behavior = module.ConfirmBehavior.Replace }),
+		["<Tab>"] = module.mapping.select_next_item(),
+		["<S-Tab>"] = module.mapping.select_prev_item(),
+	}
 end
 return binding

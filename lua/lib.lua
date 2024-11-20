@@ -26,7 +26,7 @@ function lib.module_loader(modules_path)
 			local plugin_location = modules_path .. "." .. plugin_name
 			local status, module = pcall(require, plugin_location)
 			if not status then
-				-- skip
+				-- Skip
 				print("Cannot load module: " .. plugin_location .. "\nError: " .. module)
 			else
 				table.insert(plugin_list, module)
@@ -55,11 +55,8 @@ function lib.check_essential(bin_list)
 	local mason_bin_path = vim.fn.stdpath("data") .. "/mason/bin"
 	vim.env.PATH = mason_bin_path .. ":" .. vim.env.PATH
 
-	local uninstalled = {}
-	fp.map(bin_list, function(bin)
-		if os.execute("command -v " .. bin .. " > /dev/null 2>&1") ~= 0 then
-			table.insert(uninstalled, bin)
-		end
+	local uninstalled = fp.filter(bin_list, function(bin)
+		return not lib.is_executable(bin)
 	end)
 
 	if #uninstalled > 0 then
@@ -72,6 +69,10 @@ function lib.check_essential(bin_list)
 		end
 		print("Neovim should use these command(s):", issue_bar)
 	end
+end
+
+function lib.is_executable(bin)
+	return vim.fn.executable(bin) ~= 0
 end
 
 function lib.module_is_loaded(module_name)

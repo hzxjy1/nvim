@@ -9,7 +9,7 @@ local mason_lspconfig_setup = {
 
 function mason_lspconfig_setup:clangd_check()
 	local lsp = "clangd"
-	if os.execute("command -v " .. lsp) ~= 0 then -- TODO: Use func in lib.lua
+	if not lib.is_executable(lsp) then
 		table.insert(self.ensure_installed, lsp)
 	end
 	return self

@@ -7,6 +7,7 @@
 -- TODO: Use external resp instead of copy
 -- TODO: Find strange print in startup
 -- TODO: Disable vertical line in F2
+-- Add js fmter
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")

@@ -1,7 +1,7 @@
 local binding = {}
 
 -- Key binding setup
-vim.cmd("set number") -- toggle_line_numbbersers() will lose efficacy if use "vim.o.number"
+vim.cmd("set number") -- <F2> will lose efficacy if use "vim.o.number"
 vim.cmd("set relativenumber")
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
@@ -28,7 +28,7 @@ map("i", "<C-s>", "<Esc>:w<CR>a", opt)
 -- Quick quit
 map("n", "<BS>", "<Esc>:q<CR>", opt)
 -- Show number line
-map("n", "<F2>", "<cmd>set number! relativenumber!<CR>", opt)
+map("n", "<F2>", "<cmd>lua require('key_binding').move_roadblock()<CR>", opt)
 -- LSP about
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt) -- TODO: move bindings to plugin setup
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
@@ -54,4 +54,20 @@ binding.cmp_map = function(module)
 		["<S-Tab>"] = module.mapping.select_prev_item(),
 	}
 end
+
+local co = coroutine.create(function()
+	local enable = true
+	local ibl = require("ibl")
+	while true do
+		enable = not enable
+		ibl.update({ enabled = enable })
+		coroutine.yield()
+	end
+end)
+
+function binding.move_roadblock()
+	vim.cmd("set number! relativenumber!")
+	coroutine.resume(co)
+end
+
 return binding

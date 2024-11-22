@@ -1,8 +1,8 @@
 local python_conf = {
 	name = "python",
 	lsp = "pyright",
-	linter = "pylint",
-	formatter = "default",
+	linter = nil,
+	formatter = "black",
 }
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#pyright

@@ -5,9 +5,7 @@
 -- TODO: Add ui switch key_binding
 -- TODO: Add cmd to reload conf manually
 -- TODO: Use external resp instead of copy
--- TODO: Find strange print in startup
--- TODO: Disable vertical line in F2
--- Add js fmter
+-- TODO: Add json fmt
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")

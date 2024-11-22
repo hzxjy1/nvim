@@ -21,7 +21,7 @@ function lib.module_loader(modules_path)
 	local config_path = vim.fn.stdpath("config") .. "/lua/"
 	local plugin_list = {}
 	for _, file in ipairs(vim.fn.readdir(config_path .. modules_path)) do
-		if file:match("%.lua$") then
+		if file:match("%.lua$") and file ~= "util.lua" then
 			local plugin_name = file:sub(1, -5)
 			local plugin_location = modules_path .. "." .. plugin_name
 			local status, module = pcall(require, plugin_location)

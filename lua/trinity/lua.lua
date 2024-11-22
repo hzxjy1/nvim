@@ -1,8 +1,8 @@
 local lua_conf = {
 	name = "lua",
 	lsp = "lua_ls",
-	linter = "default",
-	formatter = "default",
+	linter = nil,
+	formatter = "stylua",
 }
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls

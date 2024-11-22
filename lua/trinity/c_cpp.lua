@@ -3,7 +3,7 @@ local c_cpp_conf = {
 	alias = { "c", "cpp" },
 	lsp = "clangd",
 	linter = "clang-tidy",
-	formatter = "default",
+	formatter = "clang-format",
 }
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#clangd

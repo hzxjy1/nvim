@@ -1,3 +1,6 @@
+local util = require("../trinity/util")
+local fmt_list = util.formatter_selecter(util.get_conf("trinity"))
+
 local config = {
 	"stevearc/conform.nvim",
 	config = function()
@@ -5,13 +8,7 @@ local config = {
 			require("conform").format({ bufnr = vim.fn.bufnr() })
 		end, { desc = "Format the current buffer using conform.nvim" })
 
-		require("conform").setup({ -- TODO: use trinity
-			formatters_by_ft = {
-				lua = { "stylua" },
-				python = { "black" },
-				javascript = { "prettier" },
-			},
-		})
+		require("conform").setup({ formatters_by_ft = fmt_list })
 	end,
 }
 

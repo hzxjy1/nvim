@@ -1,12 +1,12 @@
+local util = require("../trinity/util")
+local lint_list = util.linter_selecter(util.get_conf("trinity")) -- TODO: mv "trinity" to conf.lua
+
 local config = {
 	"mfussenegger/nvim-lint",
 	config = function()
 		local lint = require("lint")
 
-		lint.linters_by_ft = {
-			c = { "clangtidy" },
-			cpp = { "clangtidy" },
-		}
+		lint.linters_by_ft = lint_list
 
 		-- Linting after the file is saved
 		vim.api.nvim_create_autocmd("BufWritePost", {

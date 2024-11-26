@@ -8,7 +8,7 @@ local python_conf = {
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#pyright
 python_conf.lsp_setup = function(lspconfig)
 	local setup = {
-		filetypes = { "python" }, -- TODO: fix nil index bug
+		filetypes = { "python" },
 		root_dir = lspconfig.util.root_pattern("setup.py", "setup.cfg", "pyproject.toml", ".git"),
 		settings = {
 			python = {

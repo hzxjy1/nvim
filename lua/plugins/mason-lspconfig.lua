@@ -1,6 +1,5 @@
-local python = require("../trinity/python") -- TODO: Write a plugin picker
-
-local install_list = { "lua_ls", "ts_ls", python.lsp } -- TODO: Add func to download non-lsp software
+local util = require("../trinity/util")
+local install_list = util.lsp_selecter(util.get_conf("trinity"))
 
 local mason_lspconfig_setup = {
 	ensure_installed = install_list,
@@ -9,8 +8,13 @@ local mason_lspconfig_setup = {
 
 function mason_lspconfig_setup:clangd_check()
 	local lsp = "clangd"
-	if not lib.is_executable(lsp) then
-		table.insert(self.ensure_installed, lsp)
+	if lib.is_executable(lsp) then
+		for i, item in ipairs(self.ensure_installed) do
+			if item == lsp then
+				table.remove(self.ensure_installed, i)
+				break
+			end
+		end
 	end
 	return self
 end

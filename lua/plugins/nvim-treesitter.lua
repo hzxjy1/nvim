@@ -1,20 +1,8 @@
-local function get_install_list()
-	local lang_conf = lib.module_loader("trinity")
-	local list = {}
-	fp.map(lang_conf, function(entity)
-		if entity.name == "alias" then
-			for _, value in ipairs(entity.alias) do
-				table.insert(list, value)
-			end
-			return
-		end
-		table.insert(list, entity.name)
-	end)
-	return list
-end
+local util = require("../trinity/util")
+local name_list = util.name_selecter(util.get_conf("trinity"))
 
 local setup = {
-	ensure_installed = get_install_list(),
+	ensure_installed = name_list,
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = false,

@@ -56,17 +56,24 @@ binding.cmp_map = function(module)
 end
 
 local co = coroutine.create(function()
-	local enable = true
+	local status = true
 	local ibl = require("ibl")
 	while true do
-		enable = not enable
-		ibl.update({ enabled = enable })
+		status = not status
+
+		if status then
+			vim.cmd("set number relativenumber")
+		else
+			vim.cmd("set nonumber norelativenumber")
+		end
+		vim.diagnostic.enable(status)
+		ibl.update({ enabled = status })
+
 		coroutine.yield()
 	end
 end)
 
 function binding.move_roadblock()
-	vim.cmd("set number! relativenumber!")
 	coroutine.resume(co)
 end
 

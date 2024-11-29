@@ -44,6 +44,20 @@ map("n", "<C-l>", "<cmd>BufferLineCycleNext<CR>", opt)
 map("n", "<C-w>", "<cmd>bdelete<CR>", opt)
 -- Key binding end
 
+-- Force use OSC 52 to deal the cilpboard, so we can use "+y to copy something to windows
+-- See :help clipboard-wsl
+vim.g.clipboard = {
+	name = "OSC 52",
+	copy = {
+		["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+		["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+	},
+	paste = {
+		["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+		["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+	},
+}
+
 binding.cmp_map = function(module)
 	return {
 		["<C-n>"] = module.mapping.select_next_item(),

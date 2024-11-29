@@ -26,6 +26,7 @@ local wish_list = {
 	--'rmagatti/auto-session'
 	--"karb94/neoscroll.nvim"
 	--"azabiong/vim-highlighter"
+    --"RRethy/vim-illuminate"
 }
 
 lib.check_essential(require("conf").essential_bin)

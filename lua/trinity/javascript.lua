@@ -2,7 +2,7 @@ local javascript_conf = {
 	name = "javascript",
 	lsp = "ts_ls",
 	linter = nil,
-	formatter = "prettier",
+	formatter = "biome",
 }
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls

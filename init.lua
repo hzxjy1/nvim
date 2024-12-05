@@ -5,6 +5,7 @@
 -- TODO: Add ui switch key_binding
 -- TODO: Add cmd to reload conf manually
 -- TODO: Use external resp instead of copy
+-- TODO: Force save while in non-root
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")

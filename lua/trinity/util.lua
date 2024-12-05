@@ -3,11 +3,11 @@ local util = {}
 util.get_conf = lib.module_loader
 
 --- A filter of trinity members
--- @param lang_conf table Trinity members extracted in trinity folder
--- @param table_member string Specify which item of lang_conf will be selected
--- @param is_array boolean Return selected items as array; otherwise, return {item_name, item} binding.
--- @param extra function|nil Optional, an additional operation to execute before processing each entity
--- @return table A table containing the selected values
+--- @param lang_conf table Trinity members extracted in trinity folder
+--- @param table_member string Specify which item of lang_conf will be selected
+--- @param is_array boolean Return selected items as array; otherwise, return {item_name, item} binding.
+--- @param extra function|nil Optional, an additional operation to execute before processing each entity
+--- @return table A table containing the selected values
 local function selecter_common(lang_conf, table_member, is_array, extra)
 	local lang_table = {}
 	fp.map(lang_conf, function(entity)

@@ -46,6 +46,7 @@ map("n", "<C-w>", "<cmd>bdelete<CR>", opt)
 
 -- Force use OSC 52 to deal the cilpboard, so we can use "+y to copy something to windows
 -- See :help clipboard-wsl
+-- TODO: Add wrapper func
 vim.g.clipboard = {
 	name = "OSC 52",
 	copy = {

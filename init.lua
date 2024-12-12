@@ -7,7 +7,7 @@
 -- TODO: Use external resp instead of copy
 -- TODO: Force save while in non-root
 
-print("aaa")
+---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")
 fp = require("tookit/functional")
 

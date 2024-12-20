@@ -1,7 +1,5 @@
 -- TODO: Fix :checkhealth warn & error -> luarocks TODO: Fix clipboard -> copy buffer rsync
--- TODO: Add rust support
 -- TODO: Need inlay hints especially RUST!!! -> rustaceanvim
--- TODO: Need a plugin for git
 -- TODO: Add ui switch key_binding
 -- TODO: Add cmd to reload conf manually
 -- TODO: Use external resp instead of copy
@@ -18,13 +16,10 @@ local wish_list = {
 	-- TODO: Accomplish them
 
 	--'nvim-telescope/telescope.nvim'
-	--'lewis6991/gitsigns.nvim'
 	--'stevearc/aerial.nvim'
 	--'CRAG666/code_runner.nvim'
 	--'nvimdev/lspsaga.nvim'
 	--"folke/which-key.nvim"
-	--'tpope/vim-obsession'
-	--'rmagatti/auto-session'
 	--"karb94/neoscroll.nvim"
 	--"azabiong/vim-highlighter"
     --"RRethy/vim-illuminate"

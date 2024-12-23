@@ -4,6 +4,7 @@
 -- TODO: Add cmd to reload conf manually
 -- TODO: Use external resp instead of copy
 -- TODO: Force save while in non-root
+-- TODO: Auto update
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")
@@ -32,3 +33,7 @@ local plugin_list = lib.module_loader(plugin_path)
 if not lib.lazynvim_bootstrap(plugin_list) then
 	print("Unable to load plugins")
 end
+
+-- Set skin
+vim.cmd[[colorscheme monokai-pro-default]]
+

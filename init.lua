@@ -35,5 +35,5 @@ if not lib.lazynvim_bootstrap(plugin_list) then
 end
 
 -- Set skin
-vim.cmd[[colorscheme monokai-pro-default]]
+vim.cmd[[colorscheme monokai-pro-octagon]]
 

@@ -71,6 +71,63 @@ function lib.check_essential(bin_list)
 	end
 end
 
+---@diagnostic disable: missing-fields
+local function check_update_co()
+	local git = "git"
+	Spawn_result = 0
+
+	vim.loop.spawn(git, {
+		args = { "fetch" },
+		stdio = { nil, nil, nil },
+	}, function(code)
+		Spawn_result = code
+		coroutine.resume(Update_co)
+	end)
+
+	coroutine.yield()
+	if Spawn_result ~= 0 then
+		print("Unable check update, command 'git fetch' return exit-code " .. Spawn_result)
+		return
+	end
+
+	vim.loop.spawn(git, {
+		args = { "diff", "--exit-code", "origin/master" },
+		stdio = { nil, nil, nil },
+	}, function(code)
+		Spawn_result = code
+		coroutine.resume(Update_co)
+	end)
+
+	coroutine.yield()
+	if Spawn_result == 0 then
+		print("Update available, updating...")
+	else
+		return
+	end
+
+	vim.loop.spawn(git, {
+		args = { "pull" },
+		stdio = { nil, nil, nil },
+	}, function(code)
+		Spawn_result = code
+		coroutine.resume(Update_co)
+	end)
+
+	coroutine.yield()
+	if Spawn_result == 0 then
+		-- Unavailable, idk
+		-- vim.notify("The update was successful", vim.log.levels.INFO, { timeout = 2000 })
+		print("The update was successful")
+	else
+		print("Unable update, command 'git pull' return exit-code " .. Spawn_result)
+	end
+end
+
+function lib.check_update()
+	Update_co = coroutine.create(check_update_co)
+	coroutine.resume(Update_co)
+end
+
 function lib.is_executable(bin)
 	return vim.fn.executable(bin) ~= 0
 end

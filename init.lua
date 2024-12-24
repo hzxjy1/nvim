@@ -5,6 +5,7 @@
 -- TODO: Use external resp instead of copy
 -- TODO: Force save while in non-root
 -- TODO: Auto update
+-- TODO: Auto format and disable function
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")
@@ -37,3 +38,4 @@ end
 -- Set skin
 vim.cmd[[colorscheme monokai-pro-octagon]]
 
+lib.check_update()

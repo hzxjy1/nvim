@@ -6,6 +6,7 @@
 -- TODO: Force save while in non-root
 -- TODO: Auto update
 -- TODO: Auto format and disable function
+-- BUG: Theme will cover line display
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")

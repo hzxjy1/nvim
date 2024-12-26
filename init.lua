@@ -1,10 +1,9 @@
--- TODO: Fix :checkhealth warn & error -> luarocks TODO: Fix clipboard -> copy buffer rsync
+-- TODO: Fix :checkhealth warn & error -> luarocks
 -- TODO: Need inlay hints especially RUST!!! -> rustaceanvim
 -- TODO: Add ui switch key_binding
 -- TODO: Add cmd to reload conf manually
--- TODO: Use external resp instead of copy
+-- TODO: Use external resp instead of copy <- Might hard to distribute
 -- TODO: Force save while in non-root
--- TODO: Auto update
 -- TODO: Auto format and disable function
 -- BUG: Theme will cover line display
 

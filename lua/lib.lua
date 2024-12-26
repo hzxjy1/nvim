@@ -99,7 +99,7 @@ local function check_update_co()
 	end)
 
 	coroutine.yield()
-	if Spawn_result == 0 then
+	if Spawn_result ~= 0 then
 		print("Update available, updating...")
 	else
 		return

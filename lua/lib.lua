@@ -1,4 +1,9 @@
 local lib = {}
+local config_path = vim.fn.stdpath("config")
+local data_path = vim.fn.stdpath("data")
+if type(config_path) == "table" then
+	config_path = config_path[1]
+end
 
 -- https://www.lazyvim.org/configuration/lazy.nvim
 local function download_lazynvim(lazypath)
@@ -18,9 +23,8 @@ local function download_lazynvim(lazypath)
 end
 
 function lib.module_loader(modules_path)
-	local config_path = vim.fn.stdpath("config") .. "/lua/"
 	local plugin_list = {}
-	for _, file in ipairs(vim.fn.readdir(config_path .. modules_path)) do
+	for _, file in ipairs(vim.fn.readdir(config_path .. "/lua/" .. modules_path)) do
 		if file:match("%.lua$") and file ~= "util.lua" then
 			local plugin_name = file:sub(1, -5)
 			local plugin_location = modules_path .. "." .. plugin_name
@@ -37,7 +41,7 @@ function lib.module_loader(modules_path)
 end
 
 function lib.lazynvim_bootstrap(plugin_list)
-	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+	local lazypath = data_path .. "/lazy/lazy.nvim"
 	vim.opt.rtp:prepend(lazypath)
 	local status, lazy = pcall(require, "lazy")
 	if status then
@@ -52,7 +56,7 @@ function lib.luarocks_bootstrap() -- TODO: Need complete
 end
 
 function lib.check_essential(bin_list)
-	local mason_bin_path = vim.fn.stdpath("data") .. "/mason/bin"
+	local mason_bin_path = data_path .. "/mason/bin"
 	vim.env.PATH = mason_bin_path .. ":" .. vim.env.PATH
 
 	local uninstalled = fp.filter(bin_list, function(bin)
@@ -79,6 +83,7 @@ local function check_update_co()
 	vim.loop.spawn(git, {
 		args = { "fetch" },
 		stdio = { nil, nil, nil },
+		cwd = config_path,
 	}, function(code)
 		Spawn_result = code
 		coroutine.resume(Update_co)
@@ -93,6 +98,7 @@ local function check_update_co()
 	vim.loop.spawn(git, {
 		args = { "diff", "--exit-code", "origin/master" },
 		stdio = { nil, nil, nil },
+		cwd = config_path,
 	}, function(code)
 		Spawn_result = code
 		coroutine.resume(Update_co)
@@ -108,6 +114,7 @@ local function check_update_co()
 	vim.loop.spawn(git, {
 		args = { "pull" },
 		stdio = { nil, nil, nil },
+		cwd = config_path,
 	}, function(code)
 		Spawn_result = code
 		coroutine.resume(Update_co)

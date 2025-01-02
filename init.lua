@@ -5,7 +5,9 @@
 -- TODO: Use external resp instead of copy <- Might hard to distribute
 -- TODO: Force save while in non-root
 -- TODO: Auto format and disable function
+-- TODO: <F2> need hide the vertical line of git plugin
 -- BUG: Theme will cover line display
+-- BUG: Update will trigger while have some untrack modify
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")

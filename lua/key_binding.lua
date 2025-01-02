@@ -42,7 +42,7 @@ map("n", "<C-E>", "<cmd>NvimTreeToggle<CR>", opt)
 -- bufferline about
 map("n", "<C-h>", "<cmd>BufferLineCyclePrev<CR>", opt)
 map("n", "<C-l>", "<cmd>BufferLineCycleNext<CR>", opt)
-map("n", "<C-w>", "<cmd>bdelete<CR>", opt)
+map("n", "<C-q>", "<cmd>bdelete<CR>", opt)
 -- Key binding end
 
 -- Force use OSC 52 to deal the cilpboard, so we can use "+y to copy something to windows

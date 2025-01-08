@@ -1,4 +1,5 @@
 local code_runner_conf = {
+	mode = "tab",
 	filetype = {
 		java = {
 			"cd $dir &&",
@@ -12,7 +13,8 @@ local code_runner_conf = {
 			"rustc $fileName &&",
 			"$dir/$fileNameWithoutExt",
 		},
-		c = function(...)
+		c = function()
+			---@diagnostic disable-next-line: lowercase-global
 			c_base = {
 				"cd $dir &&",
 				"gcc $fileName -o",

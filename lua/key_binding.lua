@@ -30,7 +30,7 @@ map("n", "<BS>", "<Esc>:q<CR>", opt)
 -- Show number line
 map("n", "<F2>", "<cmd>lua require('key_binding').move_roadblock()<CR>", opt)
 -- LSP about
-map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt) -- TODO: move bindings to plugin setup
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
 map("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
@@ -43,6 +43,8 @@ map("n", "<C-E>", "<cmd>NvimTreeToggle<CR>", opt)
 map("n", "<C-h>", "<cmd>BufferLineCyclePrev<CR>", opt)
 map("n", "<C-l>", "<cmd>BufferLineCycleNext<CR>", opt)
 map("n", "<C-q>", "<cmd>bdelete<CR>", opt)
+-- code runner about
+map("n", "<leader>rr", "<cmd>wa<CR><cmd>RunCode<CR>", opt)
 -- Key binding end
 
 -- Force use OSC 52 to deal the cilpboard, so we can use "+y to copy something to windows
@@ -62,8 +64,6 @@ vim.g.clipboard = {
 
 binding.cmp_map = function(module)
 	return {
-		["<C-n>"] = module.mapping.select_next_item(),
-		["<C-p>"] = module.mapping.select_prev_item(),
 		["<C-e>"] = module.mapping.close(),
 		["<CR>"] = module.mapping.confirm({ select = true, behavior = module.ConfirmBehavior.Replace }),
 		["<Tab>"] = module.mapping.select_next_item(),

@@ -82,7 +82,7 @@ local function check_update_co()
 
 	vim.loop.spawn(git, {
 		args = { "fetch" },
-		stdio = { nil, nil, nil },
+		stdio = {},
 		cwd = config_path,
 	}, function(code)
 		Spawn_result = code
@@ -95,9 +95,24 @@ local function check_update_co()
 		return
 	end
 
+	-- Stop update while repo has some untracked commit
+	vim.loop.spawn(git, {
+		args = { "diff", "--exit-code" },
+		stdio = {},
+		cwd = config_path,
+	}, function(code)
+		Spawn_result = code
+		coroutine.resume(Update_co)
+	end)
+
+	coroutine.yield()
+	if Spawn_result ~= 0 then
+		return
+	end
+
 	vim.loop.spawn(git, {
 		args = { "diff", "--exit-code", "origin/master" },
-		stdio = { nil, nil, nil },
+		stdio = {},
 		cwd = config_path,
 	}, function(code)
 		Spawn_result = code
@@ -113,7 +128,7 @@ local function check_update_co()
 
 	vim.loop.spawn(git, {
 		args = { "pull" },
-		stdio = { nil, nil, nil },
+		stdio = {},
 		cwd = config_path,
 	}, function(code)
 		Spawn_result = code

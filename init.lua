@@ -1,4 +1,3 @@
--- TODO: Fix :checkhealth warn & error -> luarocks
 -- TODO: Need inlay hints especially RUST!!! -> rustaceanvim
 -- TODO: Add a cmd to strip code commit
 -- TODO: Add a cmd to reload conf manually
@@ -6,8 +5,9 @@
 -- TODO: Force save while in non-root
 -- TODO: Auto format and disable function
 -- TODO: <F2> need hide the vertical line of git plugin
+-- TODO: Can exec shell in nvim
+-- TODO: Add a cmd to strip comment
 -- BUG: Theme will cover line display
--- BUG: Update will trigger while have some untrack modify
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")

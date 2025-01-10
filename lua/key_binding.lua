@@ -27,7 +27,7 @@ map("n", "<C-s>", ":w<CR>", opt)
 map("i", "<C-s>", "<Esc>:w<CR>a", opt)
 -- Quick quit
 map("n", "<BS>", "<Esc>:q<CR>", opt)
--- Show number line
+-- Show/hide number line
 map("n", "<F2>", "<cmd>lua require('key_binding').move_roadblock()<CR>", opt)
 -- LSP about
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
@@ -47,9 +47,8 @@ map("n", "<C-q>", "<cmd>bdelete<CR>", opt)
 map("n", "<leader>rr", "<cmd>wa<CR><cmd>RunCode<CR>", opt)
 -- Key binding end
 
--- Force use OSC 52 to deal the cilpboard, so we can use "+y to copy something to windows
+-- Force use OSC 52 to deal the cilpboard, so we can use "+y to copy something to Windows
 -- See :help clipboard-wsl
--- TODO: Add wrapper func
 vim.g.clipboard = {
 	name = "OSC 52",
 	copy = {
@@ -61,6 +60,7 @@ vim.g.clipboard = {
 		["*"] = require("vim.ui.clipboard.osc52").paste("*"),
 	},
 }
+map("v", "<leader>c", '"+y', opt)
 
 binding.cmp_map = function(module)
 	return {

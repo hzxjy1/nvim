@@ -4,9 +4,9 @@
 -- TODO: Use external resp instead of copy <- Might hard to distribute
 -- TODO: Force save while in non-root
 -- TODO: Auto format and disable function
--- TODO: <F2> need hide the vertical line of git plugin
 -- TODO: Can exec shell in nvim
 -- TODO: Add a cmd to strip comment
+-- TODO: Repair icons
 -- BUG: Theme will cover line display
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
@@ -21,12 +21,11 @@ local wish_list = {
 
 	--'nvim-telescope/telescope.nvim'
 	--'stevearc/aerial.nvim'
-	--'CRAG666/code_runner.nvim'
 	--'nvimdev/lspsaga.nvim'
 	--"folke/which-key.nvim"
 	--"karb94/neoscroll.nvim"
 	--"azabiong/vim-highlighter"
-    --"RRethy/vim-illuminate"
+	--"RRethy/vim-illuminate"
 }
 
 lib.check_essential(require("conf").essential_bin)
@@ -38,6 +37,6 @@ if not lib.lazynvim_bootstrap(plugin_list) then
 end
 
 -- Set skin
-vim.cmd[[colorscheme monokai-pro-octagon]]
+vim.cmd([[colorscheme monokai-pro-octagon]])
 
 lib.check_update()

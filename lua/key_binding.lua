@@ -74,6 +74,7 @@ end
 local co = coroutine.create(function()
 	local status = true
 	local ibl = require("ibl")
+	local gitsigns = require("gitsigns")
 	while true do
 		status = not status
 
@@ -84,6 +85,8 @@ local co = coroutine.create(function()
 		end
 		vim.diagnostic.enable(status)
 		ibl.update({ enabled = status })
+		gitsigns.toggle_signs(status)
+		gitsigns.toggle_current_line_blame(status)
 
 		coroutine.yield()
 	end

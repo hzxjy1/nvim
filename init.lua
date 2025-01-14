@@ -41,3 +41,19 @@ end
 vim.cmd([[colorscheme monokai-pro-octagon]])
 
 lib.check_update()
+
+function get_commit()
+	local query = [[
+  (comment) @comment
+]]
+	local captures = vim.treesitter.query.parse("lua", query)
+	local tree = vim.treesitter.get_parser():parse()[1]
+	for id, node, metadata in captures:iter_captures(tree:root(), 0) do
+		-- lib.print({ node:type(), vim.treesitter.get_node_text(node, vim.api.nvim_get_current_buf()) })
+		print(vim.treesitter.get_node_text(node, vim.api.nvim_get_current_buf()))
+	end
+end
+
+local map = vim.api.nvim_set_keymap
+local opt = { noremap = true, silent = true }
+map("n", "<F4>", "<cmd>lua get_commit()<CR>", opt)

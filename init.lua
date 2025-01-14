@@ -5,6 +5,8 @@
 -- TODO: Auto format and disable function
 -- TODO: Can exec shell in nvim
 -- TODO: Repair icons
+-- TODO: Check npm before some lsp install
+-- TODO: Lazy install lsp
 -- BUG: Theme will cover line display
 -- BUG: Colorscheme does not check if the theme exist
 

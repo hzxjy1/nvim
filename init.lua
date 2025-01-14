@@ -1,13 +1,12 @@
--- TODO: Need inlay hints especially RUST!!! -> rustaceanvim
 -- TODO: Add a cmd to strip code commit
 -- TODO: Add a cmd to reload conf manually
 -- TODO: Use external resp instead of copy <- Might hard to distribute
 -- TODO: Force save while in non-root
 -- TODO: Auto format and disable function
 -- TODO: Can exec shell in nvim
--- TODO: Add a cmd to strip comment
 -- TODO: Repair icons
 -- BUG: Theme will cover line display
+-- BUG: Colorscheme does not check if the theme exist
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")

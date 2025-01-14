@@ -150,6 +150,17 @@ function lib.check_update()
 	coroutine.resume(Update_co)
 end
 
+-- 摆了 I give up
+function lib.inlay_hint()
+	vim.api.nvim_create_autocmd("LspAttach", {
+		callback = function()
+			if vim.lsp.inlay_hint then
+				vim.lsp.inlay_hint.enable(true, { 0 })
+			end
+		end,
+	})
+end
+
 function lib.is_executable(bin)
 	return vim.fn.executable(bin) ~= 0
 end

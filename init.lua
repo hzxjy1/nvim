@@ -9,10 +9,12 @@
 -- TODO: Lazy install lsp
 -- BUG: Theme will cover line display
 -- BUG: Colorscheme does not check if the theme exist
+-- BUG: Update check be affected by diffierent branch
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")
 fp = require("tookit/functional")
+conf = require("conf")
 
 require("key_binding")
 
@@ -29,7 +31,7 @@ local wish_list = {
 	--"RRethy/vim-illuminate"
 }
 
-lib.check_essential(require("conf").essential_bin)
+lib.check_essential(conf.essential_bin)
 
 local plugin_path = "plugins"
 local plugin_list = lib.module_loader(plugin_path)

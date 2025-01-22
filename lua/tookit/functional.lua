@@ -74,6 +74,19 @@ function functional.curry(func, num_args, arg_reverse)
 	return curry_h(function() end, num_args)
 end
 
+function functional.memoize(lambda)
+	local cache = {}
+	return function(arg)
+		if cache[arg] then
+			return cache[arg]
+		else
+			local result = lambda(arg)
+			cache[arg] = result
+			return result
+		end
+	end
+end
+
 local function arrays_equal(arr1, arr2)
 	if #arr1 ~= #arr2 then
 		return false

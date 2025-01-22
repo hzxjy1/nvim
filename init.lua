@@ -10,6 +10,7 @@
 -- BUG: Theme will cover line display
 -- BUG: Colorscheme does not check if the theme exist
 -- BUG: Update check be affected by diffierent branch
+-- BUG: conf lose effection in lspconfig.lua
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")

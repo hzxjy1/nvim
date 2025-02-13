@@ -32,25 +32,53 @@ local function make_range()
 end
 
 local function get_commit(range_table)
+	local positions = {}
 	local query = [[
   (comment) @comment
 ]]
 	local captures = vim.treesitter.query.parse("lua", query)
 	local tree = vim.treesitter.get_parser():parse()[1]
-	for id, node, metadata in captures:iter_captures(tree:root(), 0, range_table.lstart - 1, range_table.lend) do
-		local start_row, start_col, end_row, end_col = node:range()
-		start_row = start_row + 1
-		end_row = end_row + 1
-		print(start_row, start_col, end_row, end_col)
+	for _, node, _ in captures:iter_captures(tree:root(), 0, range_table.lstart - 1, range_table.lend) do
+		local start_row, start_col, _, end_col = node:range()
+		local position = {
+			row = start_row + 1,
+			start_col = start_col,
+			end_col = end_col,
+		}
+		table.insert(positions, position)
 	end
+	return positions
+end
+
+local function remove_range(str, start_col, end_col)
+	if start_col == 0 and end_col == #str then
+		return ""
+	end
+
+	if start_col < 1 or end_col > #str or start_col > end_col then
+		return str
+	end
+
+	local before = str:sub(1, start_col)
+	local after = str:sub(end_col + 1)
+
+	return before .. after
+end
+
+local function erase_in_line(position)
+	if position == nil then
+		return
+	end
+	local line = vim.api.nvim_buf_get_lines(0, position.row - 1, position.row, false)[1]
+	local cleaned_line = remove_range(line, position.start_col, position.end_col)
+	vim.api.nvim_buf_set_lines(0, position.row - 1, position.row, false, { cleaned_line })
 end
 
 function eraser.init()
 	vim.api.nvim_create_user_command("EraseCommit", function()
 		local range = make_range()
-		-- lib.print(range)
-		print(range.lend, range.lstart)
-		get_commit(range)
+		local i = get_commit(range)
+		erase_in_line(i[1])
 	end, {})
 	local map = vim.api.nvim_set_keymap
 	local opt = { noremap = true, silent = true }

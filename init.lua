@@ -41,6 +41,3 @@ end
 vim.cmd([[colorscheme monokai-pro-octagon]])
 
 lib.check_update()
-
-local i = require("tookit/eraser/eraser")
-i.init()

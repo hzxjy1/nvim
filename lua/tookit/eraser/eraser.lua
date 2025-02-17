@@ -1,4 +1,3 @@
--- TODO: Build it as a nvim plugin
 local eraser = {}
 
 --https://github.com/linrongbin16/gitlinker.nvim/blob/master/lua/gitlinker/range.lua#L5
@@ -77,13 +76,11 @@ end
 function eraser.init()
 	vim.api.nvim_create_user_command("EraseCommit", function()
 		local range = make_range()
-		local i = get_commit(range)
-		erase_in_line(i[1])
+		local lines = get_commit(range)
+		for _, line in pairs(lines) do
+			erase_in_line(line)
+		end
 	end, {})
-	local map = vim.api.nvim_set_keymap
-	local opt = { noremap = true, silent = true }
-	map("n", "<F4>", "<cmd>EraseCommit<CR>", opt)
-	map("v", "<F4>", "<cmd>EraseCommit<CR>", opt)
 end
 
 return eraser

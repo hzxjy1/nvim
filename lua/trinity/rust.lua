@@ -1,12 +1,12 @@
 local rust_conf = {
 	name = "rust",
-	lsp = "rust_analyzer",
+	lsp = nil, -- Use rustaceanvim
 	linter = "clippy",
 	formatter = "rustfmt",
 }
 
 rust_conf.lsp_setup = function()
-    -- "root_dir" is too complex
+	-- "root_dir" is too complex
 	return {
 		cmd = { "rust-analyzer" },
 		filetypes = { "rust" },

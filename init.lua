@@ -1,5 +1,3 @@
--- TODO: Force save while in non-root
--- TODO: Auto format and disable function
 -- TODO: Can exec shell in nvim
 -- TODO: Repair icons
 -- TODO: Check npm before some lsp install
@@ -20,7 +18,6 @@ require("key_binding")
 local wish_list = {
 	-- TODO: Accomplish them
 
-	--'nvim-telescope/telescope.nvim'
 	--'stevearc/aerial.nvim'
 	--'nvimdev/lspsaga.nvim'
 	--"folke/which-key.nvim"

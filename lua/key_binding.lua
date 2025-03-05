@@ -48,6 +48,9 @@ map("n", "<leader>rr", "<cmd>wa<CR><cmd>RunCode<CR>", opt)
 map("n", "<F3>", "<cmd>lua vim.lsp.inlay_hint.enable(true)<CR>", opt) -- TODO: Add disable
 -- erase about
 map("v", "<F4>", "<cmd>EraseCommit<CR>", opt)
+-- telescope about
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opt)
+map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opt)
 -- Key binding end
 
 -- Force use OSC 52 to deal the cilpboard, so we can use "+y to copy something to Windows

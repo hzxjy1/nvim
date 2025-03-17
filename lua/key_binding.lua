@@ -51,6 +51,8 @@ map("v", "<F4>", "<cmd>EraseCommit<CR>", opt)
 -- telescope about
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opt)
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opt)
+-- aerial about
+map("n", "<leader>cs", "<cmd>AerialToggle<CR>", opt)
 -- Key binding end
 
 -- Force use OSC 52 to deal the cilpboard, so we can use "+y to copy something to Windows
@@ -76,7 +78,7 @@ binding.cmp_map = function(module)
 		["<S-Tab>"] = module.mapping.select_prev_item(),
 	}
 end
-
+-- TODO: Use global value
 local co = coroutine.create(function()
 	local status = true
 	local ibl = require("ibl")

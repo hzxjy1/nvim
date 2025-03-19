@@ -51,6 +51,7 @@ map("v", "<F4>", "<cmd>EraseCommit<CR>", opt)
 -- telescope about
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opt)
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opt)
+map("n", "<leader>fa", "<cmd>Telescope aerial<cr>", opt)
 -- aerial about
 map("n", "<leader>cs", "<cmd>AerialToggle<CR>", opt)
 -- Key binding end

@@ -18,8 +18,6 @@ require("key_binding")
 local wish_list = {
 	-- TODO: Accomplish them
 
-	--'stevearc/aerial.nvim'
-	--'nvimdev/lspsaga.nvim'
 	--"folke/which-key.nvim"
 	--"karb94/neoscroll.nvim"
 	--"azabiong/vim-highlighter"

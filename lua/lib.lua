@@ -51,36 +51,6 @@ function lib.lazynvim_bootstrap(plugin_list)
 		return download_lazynvim(lazypath)
 	end
 end
--- TODO: Move check func to a namespace
-function lib.check_essential(conf)
-	local bin_list = conf.essential_bin
-	local mason_bin_path = data_path .. "/mason/bin"
-	vim.env.PATH = mason_bin_path .. ":" .. vim.env.PATH
-
-	local uninstalled = fp.filter(bin_list, function(bin)
-		return not lib.is_executable(bin)
-	end)
-
-	if #uninstalled > 0 then
-		local issue_bar = ""
-		for index, bin in ipairs(uninstalled) do
-			if index > 1 then
-				issue_bar = issue_bar .. ", "
-			end
-			issue_bar = issue_bar .. bin
-		end
-		print("Neovim should use these command(s):", issue_bar)
-	end
-end
-
-function lib.check_theme(conf)
-	local theme = conf.theme
-	---@diagnostic disable-next-line: param-type-mismatch
-	local ret, _ = pcall(vim.cmd, "colorscheme " .. theme)
-	if not ret then
-		print("Error loading colorscheme: " .. theme)
-	end
-end
 
 ---@diagnostic disable: missing-fields
 local function check_update_co()

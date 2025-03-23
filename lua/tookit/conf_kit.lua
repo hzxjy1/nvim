@@ -34,6 +34,10 @@ end
 
 local function set_theme(conf)
 	local theme = conf.theme
+	if theme == nil then
+		return
+	end
+
 	---@diagnostic disable-next-line: param-type-mismatch
 	local ret, _ = pcall(vim.cmd, "colorscheme " .. theme)
 	if not ret then
@@ -43,7 +47,7 @@ end
 
 function conf_kit.do_conf(conf)
 	if next(conf) == nil then
-        return
+		return
 	end
 
 	check_essential(conf)

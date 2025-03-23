@@ -51,11 +51,9 @@ function lib.lazynvim_bootstrap(plugin_list)
 		return download_lazynvim(lazypath)
 	end
 end
-
-function lib.luarocks_bootstrap() -- TODO: Need complete
-end
-
-function lib.check_essential(bin_list)
+-- TODO: Move check func to a namespace
+function lib.check_essential(conf)
+	local bin_list = conf.essential_bin
 	local mason_bin_path = data_path .. "/mason/bin"
 	vim.env.PATH = mason_bin_path .. ":" .. vim.env.PATH
 
@@ -72,6 +70,15 @@ function lib.check_essential(bin_list)
 			issue_bar = issue_bar .. bin
 		end
 		print("Neovim should use these command(s):", issue_bar)
+	end
+end
+
+function lib.check_theme(conf)
+	local theme = conf.theme
+	---@diagnostic disable-next-line: param-type-mismatch
+	local ret, _ = pcall(vim.cmd, "colorscheme " .. theme)
+	if not ret then
+		print("Error loading colorscheme: " .. theme)
 	end
 end
 

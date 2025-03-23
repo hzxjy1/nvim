@@ -2,6 +2,10 @@ local util = require("../trinity/util")
 local trinity = util.get_conf("trinity")
 
 local function get_install_list()
+	if conf.disabled_lsp == nil then
+		return {}
+	end
+
 	local disabled_lsp = fp.map(conf.disabled_lsp, function(e)
 		if e == "c" or e == "cpp" then
 			return "alias"

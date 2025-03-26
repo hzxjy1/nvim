@@ -47,7 +47,8 @@ map("n", "<C-q>", "<cmd>bdelete<CR>", opt)
 map("n", "<leader>rr", "<cmd>wa<CR><cmd>RunCode<CR>", opt)
 map("n", "<F3>", "<cmd>lua vim.lsp.inlay_hint.enable(true)<CR>", opt) -- TODO: Add disable
 -- erase about
-map("v", "<F4>", "<cmd>EraseCommit<CR>", opt)
+map("v", "<leader>ec", "<cmd>EraseCommit<CR>", opt)
+map("v", "<leader>ep", "<cmd>ErasePlus<CR>", opt)
 -- telescope about
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opt)
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opt)

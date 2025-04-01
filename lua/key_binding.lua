@@ -38,7 +38,7 @@ map("n", "gH", "<cmd>lua vim.diagnostic.open_float()<CR>", opt)
 map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
 map("n", "<leader>f", "<cmd>Fmt<CR>", opt)
 -- nvim-tree about
-map("n", "<C-E>", "<cmd>NvimTreeToggle<CR>", opt)
+map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opt)
 -- bufferline about
 map("n", "<C-h>", "<cmd>BufferLineCyclePrev<CR>", opt)
 map("n", "<C-l>", "<cmd>BufferLineCycleNext<CR>", opt)

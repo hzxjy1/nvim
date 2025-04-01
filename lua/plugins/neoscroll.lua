@@ -1,8 +1,10 @@
 local config = {
-	-- "karb94/neoscroll.nvim",
-	-- config = function()
-	-- 	require("neoscroll").setup({})
-	-- end,
+	"karb94/neoscroll.nvim",
+	config = function()
+		require("neoscroll").setup(
+        -- { duration_multiplier = 0.5, easing = "sine" }
+        )
+	end,
 }
 
 return config

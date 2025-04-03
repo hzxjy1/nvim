@@ -1,5 +1,6 @@
 local javascript_conf = {
-	name = "javascript",
+	name = "alias",
+	alias = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
 	lsp = "ts_ls",
 	linter = nil,
 	formatter = "biome",
@@ -10,8 +11,11 @@ javascript_conf.lsp_setup = function()
 	return {
 		filetypes = {
 			"javascript",
+			"javascriptreact",
+			"javascript.jsx",
 			"typescript",
-			-- "vue",
+			"typescriptreact",
+			"typescript.tsx",
 		},
 	}
 end

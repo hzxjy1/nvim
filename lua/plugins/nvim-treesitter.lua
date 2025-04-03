@@ -1,5 +1,10 @@
 local util = require("../trinity/util")
-local name_list = util.name_selecter(util.get_conf("trinity"))
+local not_a_lang = { "javascriptreact", "typescriptreact" }
+local name_list = fp.map(util.name_selecter(util.get_conf("trinity")), function(e)
+	if not lib.is_include(not_a_lang, e) then
+		return e
+	end
+end)
 
 local setup = {
 	ensure_installed = name_list,

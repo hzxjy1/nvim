@@ -8,6 +8,7 @@ local code_runner_conf = {
 		},
 		python = "python3 -u",
 		typescript = "deno run",
+		bash = "bash",
 		rust = {
 			"cd $dir &&",
 			"rustc $fileName &&",

@@ -55,20 +55,36 @@ end
 ---@diagnostic disable: missing-fields
 local function check_update_co()
 	local git = "git"
-	Spawn_result = 0
+	local spawn_result = 0
+	local branch = "master"
+
+	vim.loop.spawn("sh", {
+		args = { "-c", string.format('[ "$(git branch --show-current)" = "%s" ] && exit 0 || exit 1', branch) },
+		stdio = {},
+		cwd = config_path,
+	}, function(code)
+		spawn_result = code
+		coroutine.resume(Update_co)
+	end)
+
+	coroutine.yield()
+	-- Is not the expect branch
+	if spawn_result ~= 0 then
+		return
+	end
 
 	vim.loop.spawn(git, {
 		args = { "fetch" },
 		stdio = {},
 		cwd = config_path,
 	}, function(code)
-		Spawn_result = code
+		spawn_result = code
 		coroutine.resume(Update_co)
 	end)
 
 	coroutine.yield()
-	if Spawn_result ~= 0 then
-		print("Unable check update, command 'git fetch' return exit-code " .. Spawn_result)
+	if spawn_result ~= 0 then
+		print("Unable check update, command 'git fetch' return exit-code " .. spawn_result)
 		return
 	end
 
@@ -78,12 +94,12 @@ local function check_update_co()
 		stdio = {},
 		cwd = config_path,
 	}, function(code)
-		Spawn_result = code
+		spawn_result = code
 		coroutine.resume(Update_co)
 	end)
 
 	coroutine.yield()
-	if Spawn_result ~= 0 then
+	if spawn_result ~= 0 then
 		return
 	end
 
@@ -92,12 +108,12 @@ local function check_update_co()
 		stdio = {},
 		cwd = config_path,
 	}, function(code)
-		Spawn_result = code
+		spawn_result = code
 		coroutine.resume(Update_co)
 	end)
 
 	coroutine.yield()
-	if Spawn_result ~= 0 then
+	if spawn_result ~= 0 then
 		print("Update available, updating...")
 	else
 		return
@@ -108,17 +124,17 @@ local function check_update_co()
 		stdio = {},
 		cwd = config_path,
 	}, function(code)
-		Spawn_result = code
+		spawn_result = code
 		coroutine.resume(Update_co)
 	end)
 
 	coroutine.yield()
-	if Spawn_result == 0 then
+	if spawn_result == 0 then
 		-- Unavailable, idk
 		-- vim.notify("The update was successful", vim.log.levels.INFO, { timeout = 2000 })
 		print("The update was successful")
 	else
-		print("Unable update, command 'git pull' return exit-code " .. Spawn_result)
+		print("Unable update, command 'git pull' return exit-code " .. spawn_result)
 	end
 end
 

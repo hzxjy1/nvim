@@ -1,10 +1,8 @@
--- TODO: Can exec shell in nvim
--- TODO: Repair icons
 -- TODO: Check npm before some lsp install
 -- TODO: Lazy install lsp
+-- TODO: Make update function in lib.lua as a plugins
 -- BUG: Theme will cover line display
--- BUG: Update check be affected by diffierent branch
--- BUG: conf lose effection in lspconfig.lua
+-- WARN: Slow start !! Boot is too slow
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")

@@ -2,7 +2,6 @@
 -- TODO: Lazy install lsp
 -- TODO: Make update function in lib.lua as a plugins
 -- TODO: Use vim.inspect to replace lib.print
--- TODO: Fix warning for lspconfig.lua
 -- BUG: Theme will cover line display
 -- WARN: Slow start !! Boot is too slow
 

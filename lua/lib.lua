@@ -175,10 +175,7 @@ function lib.is_include(array, value)
 end
 
 function lib.print(table)
-	local status, serpent = pcall(require, "tookit/serpent/serpent")
-	if status then
-		print(serpent.block(table))
-	end
+	print(vim.inspect(table))
 end
 
 return lib

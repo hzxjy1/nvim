@@ -22,21 +22,34 @@ local function download_lazynvim(lazypath)
 	return true
 end
 
-function lib.module_loader(modules_path)
-	local plugin_list = {}
-	for _, file in ipairs(vim.fn.readdir(config_path .. "/lua/" .. modules_path)) do
-		if file:match("%.lua$") and file ~= "util.lua" then
-			local plugin_name = file:sub(1, -5)
-			local plugin_location = modules_path .. "." .. plugin_name
-			local status, module = pcall(require, plugin_location)
-			if not status then
-				-- Skip
-				print("Cannot load module: " .. plugin_location .. "\nError: " .. module)
-			else
-				table.insert(plugin_list, module)
-			end
+local function grep_module(type)
+	return function(file)
+		if type == "plugins" then
+			return file:match("%.lua$") and not lib.is_include(conf.disabled_plugin, file:gsub("%.lua$", ""))
+		elseif type == "trinity" then
+			return file:match("%.lua$") and file ~= "util.lua"
+		else
+			return true
 		end
 	end
+end
+-- TODO: Move to a new file
+function lib.module_loader(modules_path) -- TODO: Need use fp.memoize to cache
+	local luafile_list = vim.fn.readdir(config_path .. "/lua/" .. modules_path)
+	local do_map = function(file)
+		local plugin_name = file:sub(1, -5)
+		local plugin_location = modules_path .. "." .. plugin_name
+		local status, module = pcall(require, plugin_location)
+		if not status then
+			print("Cannot load module: " .. plugin_location .. "\nError: " .. module)
+		else
+			return module
+		end
+	end
+
+	local plugin_list = fp.map(fp.filter(luafile_list, grep_module(modules_path)), do_map)
+
+	-- lib.print(plugin_list)
 	return plugin_list
 end
 

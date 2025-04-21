@@ -1,7 +1,6 @@
 -- TODO: Check npm before some lsp install
 -- TODO: Lazy install lsp
 -- TODO: Make update function in lib.lua as a plugins
--- BUG: Theme will cover line display
 -- WARN: Slow start !! Boot is too slow
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility

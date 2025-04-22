@@ -22,6 +22,42 @@ local function download_lazynvim(lazypath)
 	return true
 end
 
+function lib.deepcopy(orig)
+	local copy = {}
+	for k, v in pairs(orig) do
+		if type(v) == "table" then
+			copy[k] = lib.deepcopy(v)
+		else
+			copy[k] = v
+		end
+	end
+	return copy
+end
+
+function lib.is_array(t)
+	local i = 0
+	for _ in pairs(t) do
+		i = i + 1
+		if t[i] == nil then
+			return false
+		end
+	end
+	return true
+end
+
+function lib.flatten(array) -- WARN: Have potential risk
+	return fp.reduce(array, function(acc, row)
+		if not lib.is_array(row) then
+			table.insert(acc, row)
+			return acc
+		end
+		for _, val in pairs(row) do
+			table.insert(acc, val)
+		end
+		return acc
+	end, {})
+end
+
 local function grep_module(type)
 	return function(file)
 		if type == "plugins" then
@@ -34,23 +70,28 @@ local function grep_module(type)
 	end
 end
 -- TODO: Move to a new file
+-- TODO: Remove unused alias detect code
 local function do_module_loader(modules_path)
 	local luafile_list = vim.fn.readdir(config_path .. "/lua/" .. modules_path)
 	local do_map = function(file)
-		local plugin_name = file:sub(1, -5)
-		local plugin_location = modules_path .. "." .. plugin_name
+		local plugin_location = modules_path .. "." .. file:sub(1, -5)
 		local status, module = pcall(require, plugin_location)
 		if not status then
 			print("Cannot load module: " .. plugin_location .. "\nError: " .. module)
-		else
-			return module
+			return nil
 		end
+		if modules_path == "trinity" and module.name == "alias" then
+			return fp.map(module.alias, function(alia)
+				local temp = lib.deepcopy(module)
+				temp["name"] = alia
+				temp["alias"] = nil
+				return temp
+			end)
+		end
+		return module
 	end
 
-	local plugin_list = fp.map(fp.filter(luafile_list, grep_module(modules_path)), do_map)
-
-	-- lib.print(plugin_list)
-	return plugin_list
+	return lib.flatten(fp.map(fp.filter(luafile_list, grep_module(modules_path)), do_map))
 end
 
 lib.module_loader = require("tookit/functional").memoize(do_module_loader)

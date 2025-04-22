@@ -2,6 +2,7 @@
 -- TODO: Lazy install lsp
 -- TODO: Make update function in lib.lua as a plugins
 -- WARN: Slow start !! Boot is too slow
+-- WARN: Have probability to start slow
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")

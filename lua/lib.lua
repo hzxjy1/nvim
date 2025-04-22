@@ -34,7 +34,7 @@ local function grep_module(type)
 	end
 end
 -- TODO: Move to a new file
-function lib.module_loader(modules_path) -- TODO: Need use fp.memoize to cache
+local function do_module_loader(modules_path)
 	local luafile_list = vim.fn.readdir(config_path .. "/lua/" .. modules_path)
 	local do_map = function(file)
 		local plugin_name = file:sub(1, -5)
@@ -52,6 +52,8 @@ function lib.module_loader(modules_path) -- TODO: Need use fp.memoize to cache
 	-- lib.print(plugin_list)
 	return plugin_list
 end
+
+lib.module_loader = require("tookit/functional").memoize(do_module_loader)
 
 function lib.lazynvim_bootstrap(plugin_list)
 	local lazypath = data_path .. "/lazy/lazy.nvim"

@@ -3,25 +3,12 @@ local trinity = util.get_conf("trinity")
 
 local function get_install_list()
 	if conf.disabled_lsp == nil then
-		return {}
+		return trinity
 	end
 
-	local disabled_lsp = fp.map(conf.disabled_lsp, function(e)
-		if e == "c" or e == "cpp" then
-			return "alias"
-		else
-			return e
-		end
-	end)
-
-	local filterd_trinity = fp.filter(trinity, function(item)
-		if lib.is_include(disabled_lsp, item.name) then
-			return false
-		end
-		return true
-	end)
-
-	return util.lsp_selecter(filterd_trinity)
+	return lib.unique_array(util.lsp_selecter(fp.filter(trinity, function(item)
+		return not lib.is_include(conf.disabled_lsp, item.name)
+	end)))
 end
 
 local mason_lspconfig_setup = {

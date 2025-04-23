@@ -45,6 +45,18 @@ function lib.is_array(t)
 	return true
 end
 
+function lib.unique_array(arr)
+	local res = {}
+	local hash = {}
+	for _, v in ipairs(arr) do
+		if not hash[v] then
+			res[#res + 1] = v
+			hash[v] = true
+		end
+	end
+	return res
+end
+
 function lib.flatten(array) -- WARN: Have potential risk
 	return fp.reduce(array, function(acc, row)
 		if not lib.is_array(row) then

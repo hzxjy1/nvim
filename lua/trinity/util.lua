@@ -12,10 +12,10 @@ local function selecter_common(lang_conf, table_member, is_array, extra)
 	local lang_table = {}
 	fp.map(lang_conf, function(entity)
 		if extra ~= nil then
-			extra(entity)
+			entity = extra(entity)
 		end
 		if entity[table_member] ~= nil then
-            -- AI has generated some strange code that I never detect before the debug func lib.print is created
+			-- AI has generated some strange code that I never detect before the debug func lib.print is created
 			local value = entity.name
 			if is_array then
 				table.insert(lang_table, value)
@@ -46,6 +46,9 @@ function util.formatter_selecter(lang_conf)
 		if entity.self_setup ~= nil then
 			entity.self_setup()
 		end
+		local temp = lib.deepcopy(entity)
+		temp.formatter = { entity.formatter }
+		return temp
 	end)
 end
 

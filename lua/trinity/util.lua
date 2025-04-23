@@ -15,13 +15,12 @@ local function selecter_common(lang_conf, table_member, is_array, extra)
 			extra(entity)
 		end
 		if entity[table_member] ~= nil then
-			local key = (entity.name == "alias") and entity.alias or { entity.name }
-			for _, value in ipairs(key) do
-				if is_array then
-					table.insert(lang_table, value)
-				else
-					lang_table[value] = { entity[table_member] }
-				end
+            -- AI has generated some strange code that I never detect before the debug func lib.print is created
+			local value = entity.name
+			if is_array then
+				table.insert(lang_table, value)
+			else
+				lang_table[value] = entity[table_member]
 			end
 		end
 	end)

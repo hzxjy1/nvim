@@ -1,28 +1,11 @@
 local lib = {}
 local config_path = vim.fn.stdpath("config")
-local data_path = vim.fn.stdpath("data")
 if type(config_path) == "table" then
 	config_path = config_path[1]
 end
 
 lib.module_loader = require("tookit.module_loader").load
-
--- https://www.lazyvim.org/configuration/lazy.nvim
-local function download_lazynvim(lazypath)
-	print("Download lazynvim from github...")
-	if not (vim.uv or vim.loop).fs_stat(lazypath) then
-		local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-		local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-		if vim.v.shell_error ~= 0 then
-			vim.api.nvim_echo({
-				{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-				{ out, "WarningMsg" },
-			}, true, {})
-			return false
-		end
-	end
-	return true
-end
+lib.lazynvim_bootstrap=require("tookit.lazynvim").load
 
 function lib.deepcopy(orig)
 	local copy = {}
@@ -70,18 +53,6 @@ function lib.flatten(array) -- WARN: Have potential risk
 		end
 		return acc
 	end, {})
-end
-
-function lib.lazynvim_bootstrap(plugin_list)
-	local lazypath = data_path .. "/lazy/lazy.nvim"
-	vim.opt.rtp:prepend(lazypath)
-	local status, lazy = pcall(require, "lazy")
-	if status then
-		lazy.setup(plugin_list)
-		return true
-	else
-		return download_lazynvim(lazypath)
-	end
 end
 
 ---@diagnostic disable: missing-fields

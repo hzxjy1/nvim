@@ -27,6 +27,17 @@ local function selecter_common(lang_conf, table_member, is_array, extra)
 	return lang_table
 end
 
+local function parenthesize(member) -- In fact it use {}
+	return function(entity)
+		if entity.self_setup ~= nil then
+			entity.self_setup()
+		end
+		local temp = lib.deepcopy(entity)
+		temp[member] = { entity[member] }
+		return temp
+	end
+end
+
 function util.name_selecter(lang_conf)
 	return selecter_common(lang_conf, "name", true)
 end
@@ -38,18 +49,11 @@ function util.lsp_selecter(lang_conf)
 end
 
 function util.linter_selecter(lang_conf)
-	return selecter_common(lang_conf, "linter", false)
+	return selecter_common(lang_conf, "linter", false, parenthesize("linter"))
 end
 
 function util.formatter_selecter(lang_conf)
-	return selecter_common(lang_conf, "formatter", false, function(entity)
-		if entity.self_setup ~= nil then
-			entity.self_setup()
-		end
-		local temp = lib.deepcopy(entity)
-		temp.formatter = { entity.formatter }
-		return temp
-	end)
+	return selecter_common(lang_conf, "formatter", false, parenthesize("formatter"))
 end
 
 return util

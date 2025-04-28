@@ -29,5 +29,3 @@ if not lib.lazynvim_bootstrap(plugin_list) then
 end
 
 conf_kit.do_conf(conf)
-
-lib.check_update()

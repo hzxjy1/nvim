@@ -1,10 +1,17 @@
 local util = require("../trinity/util")
-local not_a_lang = { "javascriptreact", "typescriptreact" }
-local name_list = fp.map(util.name_selecter(util.get_conf("trinity")), function(e)
-	if not lib.is_include(not_a_lang, e) then
-		return e
-	end
-end)
+
+function handle_js_family(list)
+	local not_a_lang = { "javascriptreact", "typescriptreact" }
+	return lib.unique_array(fp.map(list, function(e)
+		if lib.is_include(not_a_lang, e) then
+			return "tsx"
+		else
+			return e
+		end
+	end))
+end
+
+local name_list = handle_js_family(util.name_selecter(util.get_conf("trinity")))
 
 local setup = {
 	ensure_installed = name_list,

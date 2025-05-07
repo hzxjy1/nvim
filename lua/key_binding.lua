@@ -2,6 +2,7 @@ local binding = {}
 
 -- Key binding setup
 vim.cmd("set number") -- <F2> will lose efficacy if use "vim.o.number"
+vim.cmd("cnoreabbrev Q! q!") -- 手残
 -- vim.cmd("set relativenumber")
 vim.o.tabstop = 4
 vim.o.softtabstop = 4

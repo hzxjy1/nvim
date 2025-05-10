@@ -74,6 +74,7 @@ function lib.module_is_loaded(module_name)
 	return package.loaded[module_name] ~= nil
 end
 
+-- TODO: Use vim.tbl_contains
 function lib.is_include(array, value)
 	if array == nil then
 		return false

@@ -1,6 +1,5 @@
--- TODO: Check npm before some lsp install
+-- TODO: sshfs?
 -- TODO: Lazy install lsp
--- TODO: Make update function in lib.lua as a plugins
 -- TODO: Use nvim standard func in lib.lua
 -- WARN: Slow start !! Boot is too slow
 -- WARN: Have probability to start slow

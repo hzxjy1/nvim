@@ -1,5 +1,6 @@
 local util = require("../trinity/util")
 local trinity = util.get_conf("trinity")
+local has_npm_dep = require("../tookit/has_npm_dep")
 
 local function get_install_list()
 	if conf.disabled_lsp == nil then
@@ -19,15 +20,18 @@ local function executable_check(exec_list)
 	end
 end
 
-local mason_lspconfig_setup = {
-	ensure_installed = executable_check({ "clangd" })(get_install_list()),
-	automatic_installation = true,
-}
-
 local config = {
 	"williamboman/mason-lspconfig.nvim",
 	config = function()
-		require("mason-lspconfig").setup(mason_lspconfig_setup)
+		local lspconfig = require("mason-lspconfig")
+		has_npm_dep.init(lspconfig, require("mason-registry"))
+
+		local mason_lspconfig_setup = {
+			ensure_installed = has_npm_dep.filter(true)(executable_check({ "clangd" })(get_install_list())),
+			automatic_installation = true,
+		}
+
+		lspconfig.setup(mason_lspconfig_setup)
 	end,
 }
 

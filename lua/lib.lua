@@ -50,19 +50,6 @@ function lib.module_is_loaded(module_name)
 	return package.loaded[module_name] ~= nil
 end
 
--- TODO: Use vim.tbl_contains
-function lib.is_include(array, value)
-	if array == nil then
-		return false
-	end
-	for _, i in ipairs(array) do
-		if i == value then
-			return true
-		end
-	end
-	return false
-end
-
 function lib.print(table)
 	print(vim.inspect(table))
 end

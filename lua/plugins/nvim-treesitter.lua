@@ -3,7 +3,7 @@ local util = require("../trinity/util")
 function handle_js_family(list)
 	local not_a_lang = { "javascriptreact", "typescriptreact" }
 	return lib.unique_array(fp.map(list, function(e)
-		if lib.is_include(not_a_lang, e) then
+		if vim.tbl_contains(not_a_lang, e) then
 			return "tsx"
 		else
 			return e

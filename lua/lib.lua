@@ -5,18 +5,7 @@ if type(config_path) == "table" then
 end
 
 lib.module_loader = require("tookit.module_loader").load
-lib.lazynvim_bootstrap=require("tookit.lazynvim").load
-
-function lib.is_array(t)
-	local i = 0
-	for _ in pairs(t) do
-		i = i + 1
-		if t[i] == nil then
-			return false
-		end
-	end
-	return true
-end
+lib.lazynvim_bootstrap = require("tookit.lazynvim").load
 
 function lib.unique_array(arr)
 	local res = {}
@@ -30,14 +19,13 @@ function lib.unique_array(arr)
 	return res
 end
 
-function lib.flatten(array) -- WARN: Have potential risk
+function lib.flatten(array)
 	return fp.reduce(array, function(acc, row)
-		if not lib.is_array(row) then
+		if not vim.isarray(row) then
 			table.insert(acc, row)
 			return acc
-		end
-		for _, val in pairs(row) do
-			table.insert(acc, val)
+		else
+            vim.list_extend(acc, row)
 		end
 		return acc
 	end, {})

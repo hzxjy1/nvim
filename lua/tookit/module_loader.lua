@@ -25,7 +25,7 @@ local function do_module_loader(modules_path)
 		end
 		if modules_path == "trinity" and module.name == "alias" then
 			return fp.map(module.alias, function(alia)
-				local temp = lib.deepcopy(module)
+				local temp = vim.deepcopy(module)
 				temp["name"] = alia
 				temp["alias"] = nil
 				return temp

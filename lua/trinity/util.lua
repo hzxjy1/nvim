@@ -32,7 +32,7 @@ local function parenthesize(member) -- In fact it use {}
 		if entity.self_setup ~= nil then
 			entity.self_setup()
 		end
-		local temp = lib.deepcopy(entity)
+		local temp = vim.deepcopy(entity)
 		temp[member] = { entity[member] }
 		return temp
 	end

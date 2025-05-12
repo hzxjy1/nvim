@@ -7,18 +7,6 @@ end
 lib.module_loader = require("tookit.module_loader").load
 lib.lazynvim_bootstrap=require("tookit.lazynvim").load
 
-function lib.deepcopy(orig)
-	local copy = {}
-	for k, v in pairs(orig) do
-		if type(v) == "table" then
-			copy[k] = lib.deepcopy(v)
-		else
-			copy[k] = v
-		end
-	end
-	return copy
-end
-
 function lib.is_array(t)
 	local i = 0
 	for _ in pairs(t) do

@@ -20,6 +20,13 @@ local function executable_check(exec_list)
 	end
 end
 
+local speculate = [[
+    exec_list : ensure_installed :
+        return fp.filter(ensure_installed, function(item)
+               return not (vim.tbl_contains(exec_list, item) and vim.fn.executable(item) == 1)
+        end)
+]]
+
 local config = {
 	"williamboman/mason-lspconfig.nvim",
 	config = function()

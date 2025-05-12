@@ -8,15 +8,15 @@ lib.module_loader = require("tookit.module_loader").load
 lib.lazynvim_bootstrap = require("tookit.lazynvim").load
 
 function lib.unique_array(arr)
-	local res = {}
 	local hash = {}
-	for _, v in ipairs(arr) do
+	return fp.filter(arr, function(v)
 		if not hash[v] then
-			res[#res + 1] = v
 			hash[v] = true
+			return true
+		else
+			return false
 		end
-	end
-	return res
+	end)
 end
 
 function lib.flatten(array)

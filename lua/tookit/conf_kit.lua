@@ -21,14 +21,10 @@ local function check_essential(conf)
 	end)
 
 	if #uninstalled > 0 then
-		local issue_bar = ""
-		for index, bin in ipairs(uninstalled) do
-			if index > 1 then
-				issue_bar = issue_bar .. ", "
-			end
-			issue_bar = issue_bar .. bin
-		end
-		print("Neovim should use these command(s):", issue_bar)
+		local issue_bar = fp.reduce(uninstalled, function(acc, v)
+			return acc .. ", " .. v
+		end, "")
+		print("Neovim should use these command(s):", string.sub(issue_bar, 3))
 	end
 end
 

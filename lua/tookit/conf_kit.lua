@@ -17,7 +17,7 @@ local function check_essential(conf)
 	vim.env.PATH = mason_bin_path .. ":" .. vim.env.PATH
 
 	local uninstalled = fp.filter(bin_list, function(bin)
-		return not lib.is_executable(bin)
+		return vim.fn.executable(bin) == 0
 	end)
 
 	if #uninstalled > 0 then

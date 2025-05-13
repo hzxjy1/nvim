@@ -42,14 +42,6 @@ function lib.inlay_hint()
 	})
 end
 
-function lib.is_executable(bin)
-	return vim.fn.executable(bin) ~= 0
-end
-
-function lib.module_is_loaded(module_name)
-	return package.loaded[module_name] ~= nil
-end
-
 function lib.print(table)
 	print(vim.inspect(table))
 end

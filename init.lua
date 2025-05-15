@@ -1,8 +1,5 @@
 -- TODO: sshfs?
--- TODO: Lazy install lsp
--- TODO: Use nvim standard func in lib.lua
 -- WARN: Slow start !! Boot is too slow
--- WARN: Have probability to start slow
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")

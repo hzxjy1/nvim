@@ -2,6 +2,9 @@ local module_loader = {}
 
 local function grep_module(type)
 	return function(file)
+		if conf.disabled_plugin == nil then
+			conf.disabled_plugin = {}
+		end
 		if type == "plugins" then
 			return file:match("%.lua$") and not vim.tbl_contains(conf.disabled_plugin, (file:gsub("%.lua$", "")))
 		elseif type == "trinity" then

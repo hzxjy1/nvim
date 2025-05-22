@@ -11,6 +11,7 @@ vim.o.expandtab = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.o.mouse = "" -- Disable it because I need right click to copy in WSL
+vim.opt.timeoutlen = 1500
 
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
@@ -56,6 +57,10 @@ map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opt)
 map("n", "<leader>fa", "<cmd>Telescope aerial<cr>", opt)
 -- aerial about
 map("n", "<leader>cs", "<cmd>AerialToggle<CR>", opt)
+-- bookmarks about
+map("n", "<leader>mm", "<cmd>lua require('bookmarks').bookmark_toggle()<CR>", opt)
+map("n", "<leader>mn", "<cmd>lua require('bookmarks').bookmark_next()<CR>", opt)
+map("n", "<leader>mp", "<cmd>lua require('bookmarks').bookmark_prev()<CR>", opt)
 -- Key binding end
 
 -- Force use OSC 52 to deal the cilpboard, so we can use "+y to copy something to Windows

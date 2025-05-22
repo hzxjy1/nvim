@@ -1,4 +1,5 @@
 -- TODO: sshfs?
+-- TODO: Functor
 -- WARN: Slow start !! Boot is too slow
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility

@@ -4,7 +4,7 @@ local has_npm_dep = require("../tookit/has_npm_dep")
 
 local function get_install_list()
 	if conf.disabled_lsp == nil then
-		return trinity
+		conf.disabled_lsp = {}
 	end
 
 	return lib.unique_array(util.lsp_selecter(fp.filter(trinity, function(item)
@@ -37,7 +37,7 @@ local config = {
 			ensure_installed = has_npm_dep.filter(true)(executable_check({ "clangd" })(get_install_list())),
 			automatic_installation = true,
 		}
-
+		-- lib.print(mason_lspconfig_setup.ensure_installed)
 		lspconfig.setup(mason_lspconfig_setup)
 	end,
 }

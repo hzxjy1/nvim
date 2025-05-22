@@ -1,7 +1,8 @@
 local has_npm_dep = {}
 
 function has_npm_dep.init(lspconfig, registry)
-	has_npm_dep.mapping = lspconfig.get_mappings().lspconfig_to_package
+	local map = lspconfig.get_mappings()
+	has_npm_dep.mapping = map.lspconfig_to_package or map.lspconfig_to_mason
 	has_npm_dep.registry = registry
 end
 

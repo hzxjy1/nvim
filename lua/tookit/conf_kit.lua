@@ -12,6 +12,10 @@ function conf_kit.get_conf(path)
 end
 
 local function check_essential(conf)
+	if conf.essential_bin == nil then
+		conf.essential_bin = {}
+	end
+
 	local bin_list = conf.essential_bin
 	local mason_bin_path = data_path .. "/mason/bin"
 	vim.env.PATH = mason_bin_path .. ":" .. vim.env.PATH

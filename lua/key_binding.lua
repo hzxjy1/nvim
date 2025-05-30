@@ -30,7 +30,7 @@ map("i", "<C-s>", "<Esc>:w<CR>a", opt)
 -- Quick quit
 map("n", "<BS>", "<Esc>:q<CR>", opt)
 -- Show/hide number line
-map("n", "<F2>", "<cmd>lua require('key_binding').move_roadblock()<CR>", opt)
+map("n", "<F2>", "<cmd>lua require('tookit/sign_colunm').toggle()<CR>", opt)
 -- LSP about
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
@@ -85,31 +85,6 @@ binding.cmp_map = function(module)
 		["<Tab>"] = module.mapping.select_next_item(),
 		["<S-Tab>"] = module.mapping.select_prev_item(),
 	}
-end
--- TODO: Use global value
-local co = coroutine.create(function()
-	local status = true
-	local ibl = require("ibl")
-	local gitsigns = require("gitsigns")
-	while true do
-		status = not status
-
-		if status then
-			vim.cmd("set number relativenumber")
-		else
-			vim.cmd("set nonumber norelativenumber")
-		end
-		vim.diagnostic.enable(status)
-		ibl.update({ enabled = status })
-		gitsigns.toggle_signs(status)
-		gitsigns.toggle_current_line_blame(status)
-
-		coroutine.yield()
-	end
-end)
-
-function binding.move_roadblock()
-	coroutine.resume(co)
 end
 
 return binding

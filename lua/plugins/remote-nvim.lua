@@ -1,4 +1,3 @@
--- TODO: Add docker support
 local config = {
 	"amitds1997/remote-nvim.nvim",
 	dependencies = {

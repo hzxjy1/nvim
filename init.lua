@@ -1,5 +1,6 @@
 -- TODO: sshfs?
 -- TODO: Functor
+-- TODO: Add hide support in bookmark.nvim
 -- WARN: Slow start !! Boot is too slow
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility

@@ -1,5 +1,5 @@
 local config = {
-	"tomasky/bookmarks.nvim",
+	"hzxjy1/bookmarks.nvim",
 	config = function()
 		local bookmarks = require("bookmarks")
 		-- This function fixes a bug that could prevent icons from loading properly

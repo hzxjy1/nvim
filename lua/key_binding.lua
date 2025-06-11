@@ -61,6 +61,10 @@ map("n", "<leader>cs", "<cmd>AerialToggle<CR>", opt)
 map("n", "<leader>mm", "<cmd>lua require('bookmarks').bookmark_toggle()<CR>", opt)
 map("n", "<leader>mn", "<cmd>lua require('bookmarks').bookmark_next()<CR>", opt)
 map("n", "<leader>mp", "<cmd>lua require('bookmarks').bookmark_prev()<CR>", opt)
+-- gitsigns about
+map("v", "<leader>rh", "<cmd>lua require('gitsigns').reset_hunk()<CR>", opt)
+map("n", "<leader>nh", "<cmd>lua require('gitsigns').next_hunk()<CR>", opt)
+map("n", "<leader>ph", "<cmd>lua require('gitsigns').prev_hunk()<CR>", opt)
 -- Key binding end
 
 -- Force use OSC 52 to deal the cilpboard, so we can use "+y to copy something to Windows

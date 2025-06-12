@@ -69,7 +69,7 @@ map("n", "<leader>ph", "<cmd>lua require('gitsigns').prev_hunk()<CR>", opt)
 
 -- Force use OSC 52 to deal the cilpboard, so we can use "+y to copy something to Windows
 -- See :help clipboard-wsl
-if vim.fn.has("wsl") then
+if vim.fn.has("wsl") == 1 then
 	vim.g.clipboard = {
 		name = "OSC 52",
 		copy = {

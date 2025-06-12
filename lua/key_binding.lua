@@ -66,6 +66,7 @@ map("v", "<leader>rh", "<cmd>lua require('gitsigns').reset_hunk()<CR>", opt)
 map("n", "<leader>nh", "<cmd>lua require('gitsigns').next_hunk()<CR>", opt)
 map("n", "<leader>ph", "<cmd>lua require('gitsigns').prev_hunk()<CR>", opt)
 -- Key binding end
+map("n", "<leader>?", "<cmd>lua require('which-key').show({ global = false })<CR>", opt)
 
 -- Force use OSC 52 to deal the cilpboard, so we can use "+y to copy something to Windows
 -- See :help clipboard-wsl

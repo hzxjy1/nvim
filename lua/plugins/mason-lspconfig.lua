@@ -8,7 +8,7 @@ local function get_install_list()
 	end
 
 	return lib.unique_array(util.lsp_selecter(fp.filter(trinity, function(item)
-		return not vim.tbl_contains(conf.disabled_lsp, item.name)
+		return not vim.tbl_contains(conf.disabled_lsp, item.name) and not vim.tbl_contains(conf.disabled_lsp, item.like)
 	end)))
 end
 

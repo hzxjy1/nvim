@@ -27,10 +27,13 @@ local function do_module_loader(modules_path)
 			return nil
 		end
 		if modules_path == "trinity" and module.name == "alias" then
+			-- WTF is "like"? It disables multiple language families in mason-lspconfig.lua
+			local like = module.alias[1]
 			return fp.map(module.alias, function(alia)
 				local temp = vim.deepcopy(module)
 				temp["name"] = alia
 				temp["alias"] = nil
+				temp["like"] = like
 				return temp
 			end)
 		end

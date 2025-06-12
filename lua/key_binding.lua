@@ -69,17 +69,20 @@ map("n", "<leader>ph", "<cmd>lua require('gitsigns').prev_hunk()<CR>", opt)
 
 -- Force use OSC 52 to deal the cilpboard, so we can use "+y to copy something to Windows
 -- See :help clipboard-wsl
-vim.g.clipboard = {
-	name = "OSC 52",
-	copy = {
-		["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-		["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-	},
-	paste = {
-		["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-		["*"] = require("vim.ui.clipboard.osc52").paste("*"),
-	},
-}
+if vim.fn.has("wsl") then
+	vim.g.clipboard = {
+		name = "OSC 52",
+		copy = {
+			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+		},
+		paste = {
+			["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+			["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+		},
+	}
+end
+
 map("v", "<leader>c", '"+y', opt)
 
 binding.cmp_map = function(module)

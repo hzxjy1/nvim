@@ -12,16 +12,6 @@ conf = conf_kit.get_conf("conf")
 
 require("key_binding")
 
----@diagnostic disable
-local wish_list = {
-	-- TODO: Accomplish them
-
-	--"folke/which-key.nvim"
-	--"karb94/neoscroll.nvim"
-	--"azabiong/vim-highlighter"
-	--"RRethy/vim-illuminate"
-}
-
 local plugin_path = "plugins"
 local plugin_list = lib.module_loader(plugin_path)
 if not lib.lazynvim_bootstrap(plugin_list) then

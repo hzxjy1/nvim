@@ -68,9 +68,8 @@ map("n", "<leader>ph", "<cmd>lua require('gitsigns').prev_hunk()<CR>", opt)
 -- Key binding end
 map("n", "<leader>?", "<cmd>lua require('which-key').show({ global = false })<CR>", opt)
 
--- Force use OSC 52 to deal the cilpboard, so we can use "+y to copy something to Windows
--- See :help clipboard-wsl
-if vim.fn.has("wsl") == 1 then
+-- OSC 52 cilpboard configuration, exclude the vte like gnome terminal
+if os.getenv("VTE_VERSION") == nil then
 	vim.g.clipboard = {
 		name = "OSC 52",
 		copy = {
@@ -83,7 +82,6 @@ if vim.fn.has("wsl") == 1 then
 		},
 	}
 end
-
 map("v", "<leader>c", '"+y', opt)
 
 binding.cmp_map = function(module)

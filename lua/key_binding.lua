@@ -31,7 +31,7 @@ map("i", "<C-s>", "<Esc>:w<CR>a", opt)
 map("n", "<BS>", "<Esc>:q<CR>", opt)
 -- Show/hide number line
 map("n", "<F2>", "<cmd>lua require('tookit/sign_colunm').toggle()<CR>", opt)
--- LSP about
+-- LSP 
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
@@ -39,34 +39,38 @@ map("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
 map("n", "gH", "<cmd>lua vim.diagnostic.open_float()<CR>", opt)
 map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
 map("n", "<leader>f", "<cmd>Fmt<CR>", opt)
--- nvim-tree about
+-- nvim-tree 
 map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opt)
--- bufferline about
+-- bufferline 
 map("n", "<C-h>", "<cmd>BufferLineCyclePrev<CR>", opt)
 map("n", "<C-l>", "<cmd>BufferLineCycleNext<CR>", opt)
 map("n", "<C-q>", "<cmd>bdelete<CR>", opt)
--- code runner about
+-- code runner 
 map("n", "<leader>rr", "<cmd>wa<CR><cmd>RunCode<CR>", opt)
 map("n", "<F3>", "<cmd>lua vim.lsp.inlay_hint.enable(true)<CR>", opt) -- TODO: Add disable
--- erase about
+-- erase 
 map("v", "<leader>ec", "<cmd>EraseCommit<CR>", opt)
 map("v", "<leader>ep", "<cmd>ErasePlus<CR>", opt)
--- telescope about
+-- telescope 
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opt)
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opt)
 map("n", "<leader>fa", "<cmd>Telescope aerial<cr>", opt)
--- aerial about
+-- aerial 
 map("n", "<leader>cs", "<cmd>AerialToggle<CR>", opt)
--- bookmarks about
+-- bookmarks 
 map("n", "<leader>mm", "<cmd>lua require('bookmarks').bookmark_toggle()<CR>", opt)
 map("n", "<leader>mn", "<cmd>lua require('bookmarks').bookmark_next()<CR>", opt)
 map("n", "<leader>mp", "<cmd>lua require('bookmarks').bookmark_prev()<CR>", opt)
--- gitsigns about
+-- gitsigns 
 map("v", "<leader>rh", "<cmd>lua require('gitsigns').reset_hunk()<CR>", opt)
 map("n", "<leader>nh", "<cmd>lua require('gitsigns').next_hunk()<CR>", opt)
 map("n", "<leader>ph", "<cmd>lua require('gitsigns').prev_hunk()<CR>", opt)
--- Key binding end
+-- which-key
 map("n", "<leader>?", "<cmd>lua require('which-key').show({ global = false })<CR>", opt)
+-- diffview
+map("n", "<leader>do", "<cmd>DiffviewOpen<CR>", opt)
+map("n", "<leader>dc", "<cmd>DiffviewClose<CR>", opt)
+-- Key binding end
 
 -- OSC 52 cilpboard configuration, exclude the vte like gnome terminal
 if os.getenv("VTE_VERSION") == nil then

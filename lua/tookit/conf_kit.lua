@@ -53,7 +53,9 @@ function conf_kit.do_conf(conf)
 	check_essential(conf)
 	set_theme(conf)
 
-    vim.cmd("CheckUpdate")
+	pcall(function()
+		vim.cmd("CheckUpdate")
+	end)
 end
 
 return conf_kit

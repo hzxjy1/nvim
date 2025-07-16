@@ -1,6 +1,6 @@
 local rust_conf = {
 	name = "rust",
-	lsp = nil, -- Use rustaceanvim
+	lsp = "rust_analyzer",
 	linter = "clippy",
 	formatter = "rustfmt",
 }

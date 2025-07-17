@@ -25,7 +25,7 @@ function lib.flatten(array)
 			table.insert(acc, row)
 			return acc
 		else
-            vim.list_extend(acc, row)
+			vim.list_extend(acc, row)
 		end
 		return acc
 	end, {})

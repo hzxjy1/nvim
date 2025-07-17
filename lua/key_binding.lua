@@ -31,7 +31,7 @@ map("i", "<C-s>", "<Esc>:w<CR>a", opt)
 map("n", "<BS>", "<Esc>:q<CR>", opt)
 -- Show/hide number line
 map("n", "<F2>", "<cmd>lua require('tookit/sign_colunm').toggle()<CR>", opt)
--- LSP 
+-- LSP
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
@@ -39,28 +39,28 @@ map("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
 map("n", "gH", "<cmd>lua vim.diagnostic.open_float()<CR>", opt)
 map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
 map("n", "<leader>f", "<cmd>Fmt<CR>", opt)
--- nvim-tree 
+-- nvim-tree
 map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opt)
--- bufferline 
+-- bufferline
 map("n", "<C-h>", "<cmd>BufferLineCyclePrev<CR>", opt)
 map("n", "<C-l>", "<cmd>BufferLineCycleNext<CR>", opt)
 map("n", "<C-q>", "<cmd>bdelete<CR>", opt)
--- code runner 
+-- code runner
 map("n", "<leader>rr", "<cmd>wa<CR><cmd>RunCode<CR>", opt)
--- erase 
+-- erase
 map("v", "<leader>ec", "<cmd>EraseCommit<CR>", opt)
 map("v", "<leader>ep", "<cmd>ErasePlus<CR>", opt)
--- telescope 
+-- telescope
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opt)
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opt)
 map("n", "<leader>fa", "<cmd>Telescope aerial<cr>", opt)
--- aerial 
+-- aerial
 map("n", "<leader>cs", "<cmd>AerialToggle<CR>", opt)
--- bookmarks 
+-- bookmarks
 map("n", "<leader>mm", "<cmd>lua require('bookmarks').bookmark_toggle()<CR>", opt)
 map("n", "<leader>mn", "<cmd>lua require('bookmarks').bookmark_next()<CR>", opt)
 map("n", "<leader>mp", "<cmd>lua require('bookmarks').bookmark_prev()<CR>", opt)
--- gitsigns 
+-- gitsigns
 map("v", "<leader>rh", "<cmd>lua require('gitsigns').reset_hunk()<CR>", opt)
 map("n", "<leader>nh", "<cmd>lua require('gitsigns').next_hunk()<CR>", opt)
 map("n", "<leader>ph", "<cmd>lua require('gitsigns').prev_hunk()<CR>", opt)

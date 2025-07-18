@@ -31,17 +31,6 @@ function lib.flatten(array)
 	end, {})
 end
 
--- 摆了 I give up
-function lib.inlay_hint()
-	vim.api.nvim_create_autocmd("LspAttach", {
-		callback = function()
-			if vim.lsp.inlay_hint then
-				vim.lsp.inlay_hint.enable(true, { 0 })
-			end
-		end,
-	})
-end
-
 function lib.print(table)
 	print(vim.inspect(table))
 end

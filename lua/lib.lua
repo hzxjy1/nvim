@@ -31,8 +31,8 @@ function lib.flatten(array)
 	end, {})
 end
 
-function lib.print(table)
-	print(vim.inspect(table))
+function lib.get_os_name()
+	return vim.loop.os_uname().sysname
 end
 
 return lib

@@ -1,5 +1,5 @@
 -- https://github.com/deepseek-ai/awesome-deepseek-integration/blob/main/docs/avante.nvim/README.md
-return {
+local config = {
 	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
@@ -47,3 +47,8 @@ return {
 		},
 	},
 }
+
+if lib.get_os_name() == "Windows_NT" then
+	config[1].build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+end
+return config

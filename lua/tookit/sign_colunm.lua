@@ -1,5 +1,6 @@
 local ibl = require("ibl")
 local gitsigns = require("gitsigns")
+local marks = require("marks")
 local transformer = {}
 local status = true
 
@@ -15,6 +16,7 @@ function transformer.toggle()
 	ibl.update({ enabled = status })
 	gitsigns.toggle_signs(status)
 	gitsigns.toggle_current_line_blame(status)
+	marks.toggle()
 end
 
 return transformer

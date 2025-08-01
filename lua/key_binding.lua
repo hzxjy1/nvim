@@ -67,6 +67,26 @@ map("n", "<leader>do", "<cmd>DiffviewOpen<CR>", opt)
 map("n", "<leader>dc", "<cmd>DiffviewClose<CR>", opt)
 -- Key binding end
 
+vim.keymap.set("n", "<leader>/", function()
+	local orig_reg = vim.fn.getreg('"')
+	local orig_regtype = vim.fn.getregtype('"')
+
+	vim.cmd("normal! vawy")
+
+	local word = vim.fn.getreg('"')
+
+	vim.fn.setreg('"', orig_reg, orig_regtype)
+	local escaped = vim.fn.escape(word, "[\\/.*$^~[]]")
+	escaped = vim.trim(escaped)
+
+	vim.fn.setreg("/", escaped)
+	vim.cmd("normal! n")
+end, {
+	desc = "Search for the current word",
+	noremap = true,
+	silent = true,
+})
+
 -- OSC 52 cilpboard configuration, exclude the vte like gnome terminal
 if os.getenv("VTE_VERSION") == nil then
 	vim.g.clipboard = {

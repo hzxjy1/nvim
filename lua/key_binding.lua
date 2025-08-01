@@ -56,10 +56,6 @@ map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opt)
 map("n", "<leader>fa", "<cmd>Telescope aerial<cr>", opt)
 -- aerial
 map("n", "<leader>cs", "<cmd>AerialToggle<CR>", opt)
--- bookmarks
-map("n", "<leader>mm", "<cmd>lua require('bookmarks').bookmark_toggle()<CR>", opt)
-map("n", "<leader>mn", "<cmd>lua require('bookmarks').bookmark_next()<CR>", opt)
-map("n", "<leader>mp", "<cmd>lua require('bookmarks').bookmark_prev()<CR>", opt)
 -- gitsigns
 map("v", "<leader>rh", "<cmd>lua require('gitsigns').reset_hunk()<CR>", opt)
 map("n", "<leader>nh", "<cmd>lua require('gitsigns').next_hunk()<CR>", opt)

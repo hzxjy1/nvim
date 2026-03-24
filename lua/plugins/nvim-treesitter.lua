@@ -27,7 +27,8 @@ local config = {
 	-- dependencies = { "p00f/nvim-ts-rainbow" }, -- Have a unknown error Vim:E475 in debian12
 	build = ":TSUpdate",
 	config = function()
-		require("nvim-treesitter.configs").setup(setup)
+        -- require("nvim-treesitter.configs").setup(setup) -- Old version
+        require("nvim-treesitter").setup(setup)
 	end,
 }
 

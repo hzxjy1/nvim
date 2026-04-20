@@ -6,6 +6,21 @@ function has_npm_dep.init(lspconfig, registry)
 	has_npm_dep.registry = registry
 end
 
+local function has_working_npm()
+	if has_npm_dep.npm_available ~= nil then
+		return has_npm_dep.npm_available
+	end
+
+	if vim.fn.executable("npm") ~= 1 then
+		has_npm_dep.npm_available = false
+		return false
+	end
+
+	vim.fn.system({ "npm", "--version" })
+	has_npm_dep.npm_available = vim.v.shell_error == 0
+	return has_npm_dep.npm_available
+end
+
 function has_npm_dep.check(lsp_name)
 	-- https://github.com/LazyVim/LazyVim/issues/6039#issuecomment-2856502153
 	local lsp_full_name = has_npm_dep.mapping[lsp_name]
@@ -19,7 +34,7 @@ end
 
 function has_npm_dep.filter(trigger)
 	return function(lsp_name_list)
-		local npm = vim.fn.executable("npm") == 1
+		local npm = has_working_npm()
 		local flitered_list = {}
 		for _, v in ipairs(lsp_name_list) do
 			if trigger == (npm or has_npm_dep.check(v)) then

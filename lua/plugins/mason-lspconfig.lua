@@ -45,6 +45,16 @@ local config = {
 		local mason_lspconfig_setup = {
 			ensure_installed = has_npm_dep.filter(true)(executable_check({ "clangd" })(get_install_list())),
 			automatic_installation = true,
+			handlers = {
+				function(server_name)
+					local lsp = require("lspconfig")
+					local entry = fp.filter(trinity, function(item) return item.lsp == server_name end)[1]
+					if not entry then
+						return
+					end
+					lsp[server_name].setup(entry and entry.lsp_setup and entry.lsp_setup(lsp) or {})
+				end,
+			},
 		}
 		-- lib.print(mason_lspconfig_setup.ensure_installed)
 		lspconfig.setup(mason_lspconfig_setup)

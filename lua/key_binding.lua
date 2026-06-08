@@ -10,7 +10,9 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.g.opencode_opts = {}
 vim.o.mouse = "" -- Disable it because I need right click to copy in WSL
+vim.o.autoread = true
 vim.opt.timeoutlen = 1500
 
 local map = vim.api.nvim_set_keymap
@@ -86,6 +88,10 @@ end, {
 	noremap = true,
 	silent = true,
 })
+
+vim.keymap.set({ "n", "x" }, "<leader>oa", function()
+	require("opencode").ask("@this: ", { submit = true })
+end, { desc = "Ask opencode", silent = true })
 
 -- OSC 52 cilpboard configuration, exclude the vte like gnome terminal
 if os.getenv("VTE_VERSION") == nil then

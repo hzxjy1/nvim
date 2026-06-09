@@ -67,6 +67,8 @@ map("n", "<leader>?", "<cmd>lua require('which-key').show({ global = false })<CR
 -- diffview
 map("n", "<leader>do", "<cmd>DiffviewOpen<CR>", opt)
 map("n", "<leader>dc", "<cmd>DiffviewClose<CR>", opt)
+-- codecompanion
+map("n", "<leader>cc", "<cmd>CodeCompanionChat<CR>", opt)
 -- Key binding end
 
 vim.keymap.set("n", "<leader>/", function()

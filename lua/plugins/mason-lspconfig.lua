@@ -3,10 +3,6 @@ local trinity = util.get_conf("trinity")
 local has_npm_dep = require("../tookit/has_npm_dep")
 
 local function get_install_list()
-	if conf.disabled_lsp == nil then
-		conf.disabled_lsp = {}
-	end
-
 	return lib.unique_array(util.lsp_selecter(fp.filter(trinity, function(item)
 		return not vim.tbl_contains(conf.disabled_lsp, item.name) and not vim.tbl_contains(conf.disabled_lsp, item.like)
 	end)))

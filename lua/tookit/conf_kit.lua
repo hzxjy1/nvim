@@ -1,21 +1,21 @@
 local conf_kit = {}
 local data_path = vim.fn.stdpath("data")
 
+local defaults = {
+	essential_bin = {},
+	disabled_lsp = {},
+	disabled_plugin = {},
+}
+
 function conf_kit.get_conf(path)
 	local result, conf = pcall(require, path)
-
-	if result then
-		return conf
-	else
-		return {}
+	if not result then
+		conf = {}
 	end
+	return vim.tbl_extend("force", vim.deepcopy(defaults), conf)
 end
 
 local function check_essential(conf)
-	if conf.essential_bin == nil then
-		conf.essential_bin = {}
-	end
-
 	local bin_list = conf.essential_bin
 	local mason_bin_path = data_path .. "/mason/bin"
 	vim.env.PATH = mason_bin_path .. ":" .. vim.env.PATH
@@ -32,26 +32,8 @@ local function check_essential(conf)
 	end
 end
 
-local function set_theme(conf)
-	local theme = conf.theme
-	if theme == nil then
-		return
-	end
-
-	---@diagnostic disable-next-line: param-type-mismatch
-	local ret, _ = pcall(vim.cmd, "colorscheme " .. theme)
-	if not ret then
-		vim.notify("Error loading colorscheme: " .. theme, vim.log.levels.ERROR)
-	end
-end
-
 function conf_kit.do_conf(conf)
-	if next(conf) == nil then
-		return
-	end
-
 	check_essential(conf)
-	set_theme(conf)
 end
 
 return conf_kit

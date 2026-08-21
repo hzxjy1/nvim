@@ -1,8 +1,10 @@
-local ibl = require("ibl")
-local gitsigns = require("gitsigns")
-local marks = require("marks")
+local ok_ibl, ibl = pcall(require, "ibl")
+local ok_gitsigns, gitsigns = pcall(require, "gitsigns")
+local ok_marks, marks = pcall(require, "marks")
 local transformer = {}
 local status = true
+-- marks.nvim only offers a plain toggle_signs(), mirror its state to avoid desync
+local marks_shown = true
 
 function transformer.toggle()
 	status = not status
@@ -13,10 +15,18 @@ function transformer.toggle()
 		vim.cmd("set nonumber norelativenumber")
 	end
 	vim.diagnostic.enable(status)
-	ibl.update({ enabled = status })
-	gitsigns.toggle_signs(status)
-	gitsigns.toggle_current_line_blame(status)
-	marks.toggle()
+	vim.lsp.inlay_hint.enable(status)
+	if ok_ibl then
+		ibl.update({ enabled = status })
+	end
+	if ok_gitsigns then
+		gitsigns.toggle_signs(status)
+		gitsigns.toggle_current_line_blame(status)
+	end
+	if ok_marks and marks_shown ~= status then
+		marks.toggle_signs()
+		marks_shown = status
+	end
 end
 
 return transformer

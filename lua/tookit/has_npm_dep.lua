@@ -37,7 +37,7 @@ function has_npm_dep.filter(trigger)
 		local npm = has_working_npm()
 		local flitered_list = {}
 		for _, v in ipairs(lsp_name_list) do
-			if trigger == (npm or has_npm_dep.check(v)) then
+			if trigger == (npm or not has_npm_dep.check(v)) then
 				table.insert(flitered_list, v)
 			end
 		end

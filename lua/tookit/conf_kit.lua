@@ -28,7 +28,7 @@ local function check_essential(conf)
 		local issue_bar = fp.reduce(uninstalled, function(acc, v)
 			return acc .. ", " .. v
 		end, "")
-		print("Neovim should use these command(s):", string.sub(issue_bar, 3))
+		vim.notify("Neovim should use these command(s): " .. string.sub(issue_bar, 3), vim.log.levels.WARN)
 	end
 end
 
@@ -41,7 +41,7 @@ local function set_theme(conf)
 	---@diagnostic disable-next-line: param-type-mismatch
 	local ret, _ = pcall(vim.cmd, "colorscheme " .. theme)
 	if not ret then
-		print("Error loading colorscheme: " .. theme)
+		vim.notify("Error loading colorscheme: " .. theme, vim.log.levels.ERROR)
 	end
 end
 
@@ -52,10 +52,6 @@ function conf_kit.do_conf(conf)
 
 	check_essential(conf)
 	set_theme(conf)
-
-	pcall(function()
-		vim.cmd("CheckUpdate")
-	end)
 end
 
 return conf_kit

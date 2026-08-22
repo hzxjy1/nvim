@@ -36,6 +36,9 @@ local code_runner_conf = {
 
 local config = {
 	"CRAG666/code_runner.nvim",
+	keys = {
+		{ "<leader>rr", "<cmd>wa<CR><cmd>RunCode<CR>", desc = "Run code" },
+	},
 	config = function()
 		require("code_runner").setup(code_runner_conf)
 	end,

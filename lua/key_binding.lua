@@ -33,42 +33,8 @@ map("i", "<C-s>", "<Esc>:w<CR>a", opt)
 map("n", "<BS>", "<Esc>:q<CR>", opt)
 -- Show/hide number line
 map("n", "<F2>", "<cmd>lua require('tookit/sign_colunm').toggle()<CR>", opt)
--- LSP
-map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
-map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
-map("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
-map("n", "gH", "<cmd>lua vim.diagnostic.open_float()<CR>", opt)
-map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
-map("n", "<leader>f", "<cmd>Fmt<CR>", opt)
--- nvim-tree
-map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opt)
--- bufferline
-map("n", "<C-h>", "<cmd>BufferLineCyclePrev<CR>", opt)
-map("n", "<C-l>", "<cmd>BufferLineCycleNext<CR>", opt)
+-- Quick quit
 map("n", "<C-q>", "<cmd>bdelete<CR>", opt)
--- code runner
-map("n", "<leader>rr", "<cmd>wa<CR><cmd>RunCode<CR>", opt)
--- erase
-map("v", "<leader>ec", "<cmd>EraseCommit<CR>", opt)
-map("v", "<leader>ep", "<cmd>ErasePlus<CR>", opt)
--- telescope
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opt)
-map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opt)
-map("n", "<leader>fa", "<cmd>Telescope aerial<cr>", opt)
--- aerial
-map("n", "<leader>cs", "<cmd>AerialToggle<CR>", opt)
--- gitsigns
-map("v", "<leader>rh", "<cmd>lua require('gitsigns').reset_hunk()<CR>", opt)
-map("n", "<leader>nh", "<cmd>lua require('gitsigns').next_hunk()<CR>", opt)
-map("n", "<leader>ph", "<cmd>lua require('gitsigns').prev_hunk()<CR>", opt)
--- which-key
-map("n", "<leader>?", "<cmd>lua require('which-key').show({ global = false })<CR>", opt)
--- diffview
-map("n", "<leader>do", "<cmd>DiffviewOpen<CR>", opt)
-map("n", "<leader>dc", "<cmd>DiffviewClose<CR>", opt)
--- codecompanion
-map("n", "<leader>cc", "<cmd>CodeCompanionChat<CR>", opt)
 -- Key binding end
 
 vim.keymap.set("n", "<leader>/", function()
@@ -90,10 +56,6 @@ end, {
 	noremap = true,
 	silent = true,
 })
-
-vim.keymap.set({ "n", "x" }, "<leader>oa", function()
-	require("opencode").ask("@this: ", { submit = true })
-end, { desc = "Ask opencode", silent = true })
 
 -- OSC 52 cilpboard configuration, exclude the vte like gnome terminal
 if os.getenv("VTE_VERSION") == nil then

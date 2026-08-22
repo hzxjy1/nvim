@@ -1,5 +1,10 @@
 local config = {
 	"nvim-telescope/telescope.nvim",
+	keys = {
+		{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find files" },
+		{ "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
+		{ "<leader>fa", "<cmd>Telescope aerial<CR>", desc = "Aerial symbols" },
+	},
 	config = function()
 		require("telescope").setup({
 			extensions = {

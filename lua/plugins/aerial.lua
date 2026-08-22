@@ -1,5 +1,8 @@
 local config = {
 	"stevearc/aerial.nvim",
+	keys = {
+		{ "<leader>cs", "<cmd>AerialToggle<CR>", desc = "Toggle aerial" },
+	},
 	config = function()
 		require("aerial").setup({
 			backends = { "lsp", "treesitter", "markdown" },

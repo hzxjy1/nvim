@@ -1,4 +1,5 @@
 local conf_kit = {}
+local fp = require("tookit.functional")
 local data_path = vim.fn.stdpath("data")
 
 local defaults = {

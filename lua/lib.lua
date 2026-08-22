@@ -1,4 +1,5 @@
 local lib = {}
+local fp = require("tookit.functional")
 local config_path = vim.fn.stdpath("config")
 if type(config_path) == "table" then
 	config_path = config_path[1]
@@ -17,18 +18,6 @@ function lib.unique_array(arr)
 			return false
 		end
 	end)
-end
-
-function lib.flatten(array)
-	return fp.reduce(array, function(acc, row)
-		if not vim.isarray(row) then
-			table.insert(acc, row)
-			return acc
-		else
-			vim.list_extend(acc, row)
-		end
-		return acc
-	end, {})
 end
 
 function lib.get_os_name()

@@ -1,6 +1,7 @@
 local util = {}
+local fp = require("tookit.functional")
 
-util.get_conf = lib.module_loader
+util.get_conf = require("tookit.module_loader").load
 
 --- A filter of trinity members
 --- @param lang_conf table Trinity members extracted in trinity folder

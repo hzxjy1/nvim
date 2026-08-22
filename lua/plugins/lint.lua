@@ -1,5 +1,5 @@
 local util = require("../trinity/util")
-local lint_list = util.linter_selecter(util.get_conf("trinity"))
+local lint_list = util.linter_selecter(util.get_conf("trinity", conf))
 
 local config = {
 	"mfussenegger/nvim-lint",

@@ -1,6 +1,7 @@
 local module_loader = {}
+local fp = require("tookit.functional")
 
-local function grep_module(type)
+local function grep_module(type, conf)
 	return function(file)
 		if type == "plugins" then
 			return file:match("%.lua$") and not vim.tbl_contains(conf.disabled_plugin, (file:gsub("%.lua$", "")))
@@ -12,7 +13,7 @@ local function grep_module(type)
 	end
 end
 
-local function do_module_loader(modules_path)
+local function do_module_loader(modules_path, conf)
 	local config_path = vim.fn.stdpath("config")
 	local luafile_list = vim.fn.readdir(config_path .. "/lua/" .. modules_path)
 
@@ -37,9 +38,15 @@ local function do_module_loader(modules_path)
 		return module
 	end
 
-	return lib.flatten(fp.map(fp.filter(luafile_list, grep_module(modules_path)), do_map))
+	return fp.flatten(fp.map(fp.filter(luafile_list, grep_module(modules_path, conf)), do_map))
 end
 
-module_loader.load = require("tookit/functional").memoize(do_module_loader)
+local cache = {}
+function module_loader.load(path, conf)
+	if not cache[path] then
+		cache[path] = do_module_loader(path, conf)
+	end
+	return cache[path]
+end
 
 return module_loader

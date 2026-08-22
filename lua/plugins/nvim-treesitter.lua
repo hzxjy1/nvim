@@ -11,7 +11,7 @@ function handle_js_family(list)
 	end))
 end
 
-local name_list = handle_js_family(util.name_selecter(util.get_conf("trinity")))
+local name_list = handle_js_family(util.name_selecter(util.get_conf("trinity", conf)))
 
 local setup = {
 	ensure_installed = name_list,

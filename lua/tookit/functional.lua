@@ -26,6 +26,18 @@ function functional.filter(array, lambda)
 	return filtered
 end
 
+function functional.flatten(array)
+	return functional.reduce(array, function(acc, row)
+		if not vim.isarray(row) then
+			table.insert(acc, row)
+			return acc
+		else
+			vim.list_extend(acc, row)
+		end
+		return acc
+	end, {})
+end
+
 function functional.compose(...)
 	local funcs = { ... }
 	return function(arg)

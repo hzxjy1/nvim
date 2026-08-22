@@ -1,5 +1,5 @@
 local util = require("../trinity/util")
-local trinity = util.get_conf("trinity")
+local trinity = util.get_conf("trinity", conf)
 local has_npm_dep = require("../tookit/has_npm_dep")
 
 local function get_install_list()

@@ -24,12 +24,13 @@ end
 function has_npm_dep.check(lsp_name)
 	-- https://github.com/LazyVim/LazyVim/issues/6039#issuecomment-2856502153
 	local lsp_full_name = has_npm_dep.mapping[lsp_name]
-	local bin = has_npm_dep.registry.get_package(lsp_full_name).spec.bin[lsp_full_name]
-	if bin and bin:match("^npm:") then
-		return true
-	else
+	local ok, bin = pcall(function()
+		return has_npm_dep.registry.get_package(lsp_full_name).spec.bin[lsp_full_name]
+	end)
+	if not ok then
 		return false
 	end
+	return bin ~= nil and bin:match("^npm:") ~= nil
 end
 
 function has_npm_dep.filter(trigger)

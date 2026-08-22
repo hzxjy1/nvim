@@ -1,8 +1,8 @@
 local config = {
 	"MeanderingProgrammer/render-markdown.nvim",
-	ft = { "markdown", "Avante", "codecompanion" },
+	ft = { "markdown" },
 	opts = {
-		file_types = { "markdown", "Avante", "codecompanion" },
+		file_types = { "markdown" },
 	},
 }
 

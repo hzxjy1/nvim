@@ -10,7 +10,6 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.g.opencode_opts = {}
 vim.o.mouse = "" -- Disable it because I need right click to copy in WSL
 vim.o.autoread = true
 vim.opt.timeoutlen = 1500

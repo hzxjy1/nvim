@@ -17,3 +17,7 @@ if not lib.lazynvim_bootstrap(plugin_list) then
 end
 
 conf_kit.do_conf(conf)
+
+-- Type 81
+-- https://github.com/stevearc/conform.nvim/issues/424
+vim.filetype.add({ extension = { sh = "bash" } })

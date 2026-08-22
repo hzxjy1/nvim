@@ -29,9 +29,6 @@ end
 
 local function parenthesize(member) -- In fact it use {}
 	return function(entity)
-		if entity.self_setup ~= nil then
-			entity.self_setup()
-		end
 		local temp = vim.deepcopy(entity)
 		temp[member] = { entity[member] }
 		return temp

@@ -22,7 +22,9 @@ local function do_module_loader(modules_path, conf)
 		local status, module = pcall(require, plugin_location)
 		if not status then
 			print("Cannot load module: " .. plugin_location .. "\nError: " .. module)
-			return nil
+			-- Return an empty array instead of nil: a nil hole would make
+			-- fp.flatten's ipairs stop here and silently drop every later plugin.
+			return {}
 		end
 		if modules_path == "trinity" and module.name == "alias" then
 			-- WTF is "like"? It disables multiple language families in mason-lspconfig.lua

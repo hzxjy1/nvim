@@ -1,4 +1,3 @@
 {
-	"diagnostics.globals": ["vim"]
+	"diagnostics.globals": ["vim", "lib", "fp", "conf"]
 }
-

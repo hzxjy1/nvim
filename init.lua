@@ -4,8 +4,8 @@
 
 ---@diagnostic disable: lowercase-global -- Lowercase for compatibility
 lib = require("lib")
-fp = require("tookit/functional")
-local conf_kit = require("tookit/conf_kit")
+fp = require("tookit.functional")
+local conf_kit = require("tookit.conf_kit")
 conf = conf_kit.get_conf("conf")
 
 require("key_binding")

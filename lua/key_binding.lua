@@ -31,7 +31,7 @@ map("i", "<C-s>", "<Esc>:w<CR>a", opt)
 -- Quick quit
 map("n", "<BS>", "<Esc>:q<CR>", opt)
 -- Show/hide number line
-map("n", "<F2>", "<cmd>lua require('tookit/sign_colunm').toggle()<CR>", opt)
+map("n", "<F2>", "<cmd>lua require('tookit.sign_colunm').toggle()<CR>", opt)
 -- Quick quit
 map("n", "<C-q>", "<cmd>bdelete<CR>", opt)
 -- Key binding end

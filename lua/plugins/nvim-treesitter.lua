@@ -1,4 +1,4 @@
-local util = require("../trinity/util")
+local util = require("trinity.util")
 
 function handle_js_family(list)
 	local not_a_lang = { "javascriptreact", "typescriptreact" }

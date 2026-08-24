@@ -1,4 +1,4 @@
-local util = require("../trinity/util")
+local util = require("trinity.util")
 local fmt_list = util.formatter_selecter(util.get_conf("trinity", conf))
 
 local config = {

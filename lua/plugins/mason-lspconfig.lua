@@ -1,6 +1,6 @@
-local util = require("../trinity/util")
+local util = require("trinity.util")
 local trinity = util.get_conf("trinity", conf)
-local has_npm_dep = require("../tookit/has_npm_dep")
+local has_npm_dep = require("tookit.has_npm_dep")
 
 local function get_install_list()
 	return lib.unique_array(util.lsp_selecter(fp.filter(trinity, function(item)

@@ -1,6 +1,5 @@
 local config = {
 	"nvim-tree/nvim-tree.lua",
-	event = "BufWinEnter",
 	keys = {
 		{ "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file tree" },
 	},

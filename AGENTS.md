@@ -127,7 +127,7 @@ This file is for coding agents working in this Neovim configuration.
 
 - Plugin files usually return a Lazy spec table with keys like the plugin repo, `config`, `dependencies`, `build`, or `event`.
 - Helper modules usually export functions by assigning onto a local table and returning it.
-- `lua/trinity/` modules commonly expose `name`, `lsp`, `linter`, `formatter`, and sometimes `lsp_setup` or `self_setup`.
+- `lua/trinity/` modules commonly expose `name`, `lsp`, `linter`, `formatter`, and sometimes `lsp_setup`.
 
 ## Error handling
 
